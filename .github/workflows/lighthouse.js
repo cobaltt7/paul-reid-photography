@@ -142,9 +142,7 @@ try {
 		}${data.data.reduce(
 			(accumulated, { scores, url, emulatedFormFactor }) =>
 				`${accumulated}<tr><td><a href="${url.trim()}">${
-					(url[url.length - 1] === "/" ? url : `${url}/`)
-						.trim()
-						.split("paul-reid.net")[1]
+					(url[url.length - 1] === "/" ? url : `${url}/`).trim().split("paul-reid.net")[1]
 				}</a></td>` +
 				`<td>${emulatedFormFactor}</td>` +
 				`<td>${addEmoji(scores.accessibility)}</td>` +

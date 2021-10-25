@@ -42,11 +42,11 @@ jobs:
             - name: Comment
               if: steps.lighthouse.outcome == 'success'
               run:
-                  node --trace-warnings --harmony .github/workflows/lighthouse.js '${{
-                  secrets.TOKEN }}' '${{ join(steps.lighthouse.outputs.*, '\n') }}' ''
+                  node --trace-warnings --harmony .github/workflows/lighthouse.js '${{ secrets.TOKEN
+                  }}' '${{ join(steps.lighthouse.outputs.*, '\n') }}' ''
 
             - name: Comment
               if: steps.lighthouse.outcome != 'success'
               run:
-                  node --trace-warnings --harmony .github/workflows/lighthouse.js '${{
-                  secrets.TOKEN }}' '{}' '1'
+                  node --trace-warnings --harmony .github/workflows/lighthouse.js '${{ secrets.TOKEN
+                  }}' '{}' '1'
