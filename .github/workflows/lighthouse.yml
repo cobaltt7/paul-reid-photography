@@ -1,0 +1,52 @@
+name: Run Lighthouse
+on:
+    workflow_dispatch:
+    workflow_run:
+        workflows: ["Deploy website"]
+        types:
+            - completed
+
+jobs:
+    run:
+        name: Run Lighthouse
+        runs-on: ubuntu-20.04
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2.3.5
+              with:
+                  ref: ${{ github.head_ref }}
+                  token: ${{ secrets.TOKEN }}
+
+            - name: Analyze
+              uses: foo-software/lighthouse-check-action@v5.0.0
+              id: lighthouse
+              continue-on-error: true
+              with:
+                  device: all
+                  locale: en
+                  prCommentEnabled: false
+                  verbose: true
+                  urls: >-
+                      TODO
+
+            - name: Setup Node.JS
+              uses: actions/setup-node@v2.4.1
+              with:
+                  node-version: 16
+                  cache: "npm"
+
+            - name: Install
+              run: npm install --force
+
+            - name: Comment
+              if: steps.lighthouse.outcome == 'success'
+              run:
+                  node --trace-warnings --harmony .github/workflows/lighthouse.js '${{
+                  secrets.TOKEN }}' '${{ join(steps.lighthouse.outputs.*, '\n') }}' ''
+
+            - name: Comment
+              if: steps.lighthouse.outcome != 'success'
+              run:
+                  node --trace-warnings --harmony .github/workflows/lighthouse.js '${{
+                  secrets.TOKEN }}' '{}' '1'

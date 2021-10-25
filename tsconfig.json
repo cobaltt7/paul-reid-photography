@@ -1,5 +1,15 @@
 {
-  "compilerOptions": {
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"pretty": true,
+		"alwaysStrict": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"noUnusedParameters": true,
+		"maxNodeModuleJsDepth": 0,
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -27,6 +37,7 @@
       "scripthost"
     ]
   },
+	"typeAcquisition": { "enable": true },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",

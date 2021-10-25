@@ -1,12 +1,114 @@
 {
   "name": "paul-reid-photography",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "TODO",
+  "keywords": [],
+  "homepage": "https://paul-reid.net",
+	"bugs": {
+		"url": "https://github.com/RedGuy12/paul-reid-photography/issues/new",
+		"email": "paul@reid-family.org"
+	},
+	"license": "MIT",
+  "author":"Paul Reid",
   "scripts": {
+    "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build"
   },
+	"prettier": {
+		"iniSpaceAroundEquals": true,
+		"printWidth": 100,
+		"proseWrap": "always",
+		"quoteProps": "consistent",
+		"tabWidth": 4,
+		"trailingComma": "all",
+		"useTabs": true,
+		"jsdocDescriptionWithDot": true,
+		"jsdocPrintWidth": 100,
+		"jsdocSeparateReturnsFromParam": true,
+		"bracketSameLine": false,
+		"vueIndentScriptAndStyle": true,
+		"overrides": [
+			{
+				"files": [
+					"**.md"
+				],
+				"options": {
+					"trailingComma": "es5",
+					"proseWrap": "never",
+					"parser": "markdown"
+				}
+			},
+			{
+				"files": [
+					"**.svg",
+					"**.html",
+					"**.xml"
+				],
+				"options": {
+					"trailingComma": "none",
+					"parser": "html",
+					"bracketSameLine": true
+				}
+			},
+			{
+				"files": [
+					"**.sass",
+					"**.scss",
+					"**.css"
+				],
+				"options": {
+					"parser": "scss"
+				}
+			},
+			{
+				"files": [
+					"**.env",
+					"**.replit",
+					"**/.tx/config"
+				],
+				"options": {
+					"parser": "ini"
+				}
+			},
+			{
+				"files": [
+					"**.json",
+					"**.map"
+				],
+				"options": {
+					"parser": "json"
+				}
+			},
+			{
+				"files": [
+					"**.code-workspace",
+					".code-snippets",
+					"**/settings.json",
+					"**/launch.json",
+					"**/extensions.json",
+					"**.jsonc",
+					"**.eslintrc",
+					"**.eslintrc.json",
+					"jsconfig.json"
+				],
+				"options": {
+					"parser": "json5",
+					"quoteProps": "preserve",
+					"trailingComma": "none"
+				}
+			}
+		],
+		"plugins": [
+			"prettier-plugin-jsdoc",
+			"prettier-plugin-ini"
+		]
+	},
+	"repository": {
+	  "type": "git",
+	  "url": "git+https://github.com/RedGuy12/paul-reid-photography.git"
+	},
   "dependencies": {
     "core-js": "^3.6.5",
     "register-service-worker": "^1.7.1",
@@ -31,6 +133,8 @@
     "less-loader": "^5.0.0",
     "lint-staged": "^9.5.0",
     "prettier": "^2.2.1",
+		"prettier-plugin-ini": "^0.3.1",
+		"prettier-plugin-jsdoc": "^0.3.24",
     "typescript": "~4.1.5",
     "vue-template-compiler": "^2.6.11"
   },
@@ -52,9 +156,11 @@
     "rules": {}
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
+		"last 2 versions",
+		"not dead",
+		"> 0.1% in us",
+		"maintained node versions",
+		"unreleased versions"
   ],
   "gitHooks": {
     "pre-commit": "lint-staged"
