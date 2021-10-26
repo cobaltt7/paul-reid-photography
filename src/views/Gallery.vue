@@ -1,11 +1,17 @@
 <template>
-  <div class="about">
-    <h1>Gallery: {{ gallery }}</h1>
+  <div>
+    <h1>Gallery: {{ gallery.name }}</h1>
+    <ImageSlider :photos="gallery.photos"/>
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
+import ImageSlider from '@/components/ImageSlider.vue'
   export default {
-props:["gallery"]
+props:["gallery"],
+  components: {
+    ImageSlider
+  }
     }
 </script>
