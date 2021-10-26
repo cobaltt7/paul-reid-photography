@@ -1,13 +1,13 @@
 import Vue, { VNode } from "vue";
-import {galleries} from "./types"
+import { galleries } from "./types";
 
 declare global {
 	namespace JSX {
-		type Element = VNode
-		type ElementClass = Vue
+		type Element = VNode;
+		type ElementClass = Vue;
 		interface IntrinsicElements {
 			[elem: string]: any;
 		}
-	};
-	readonly const galleries: galleries;
+	}
+	const galleries: galleries;
 }

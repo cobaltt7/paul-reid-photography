@@ -14,15 +14,13 @@ module.exports = {
 	plugins: [typography],
 
 	purge: {
-		content: ["./src/**/**.html", "./src/**/**/**.html", "./src/tailwind.sass"],
+		content: ["./src/**.vue"],
 		mode: "all",
 
 		options: {
 			fontFace: true,
 			keyframes: true,
 		},
-
-		safelist: ["m-auto", "h-full", "flex", "hidden"],
 	},
 
 	theme: {

@@ -1,5 +1,93 @@
-@tailwind base;
+@charset "UTF-8";
 
-@tailwind components;
+/* Import tailwind */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@tailwind utilities;
+/* GLOBAL STYLES */
+* {
+	/* display */
+	column-fill: balance-all !important;
+
+	/* manipulation */
+	scroll-behavior: smooth;
+	@apply selection:bg-red-500;
+
+	a:not(.auth-button):not(.allow-button) {
+		@apply text-blue-700
+			no-underline;
+
+		&:hover,
+		&:focus {
+			@apply text-blue-900
+				underline;
+		}
+	}
+}
+
+[data-before] {
+	@apply before:!content-[attr(data-before)];
+}
+
+[data-after] {
+	@apply after:!content-[attr(data-after)];
+}
+
+html,
+body {
+	@apply w-full h-full;
+}
+
+body {
+	@apply bg-orange-100 text-warmGray-700;
+	/* @apply text-orange-100 bg-warmGray-700; */
+}
+
+#app {
+	width: 70%;
+	@apply h-full prose m-auto;
+
+	section {
+		h2 {
+			@apply mt-0;
+		}
+	}
+
+	h1 {
+		@apply m-0
+			px-0
+			pt-4
+			pr-2
+			only-of-type:text-3xl;
+	}
+
+	> :first-child,
+	> h1:first-of-type,
+	> p:only-of-type {
+		@apply self-center;
+	}
+
+	ul {
+		li {
+			p {
+				@apply m-0;
+			}
+		}
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply font-medium;
+}
+
+/* GLOBAL STYLES */
+html {
+	@apply font-sans
+		!block;
+}
