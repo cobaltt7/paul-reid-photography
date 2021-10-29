@@ -1,49 +1,47 @@
 <template>
 	<div class="slider-container">
-		<a class="prev" @click="prev" href="#">&#10094;</a>
-		<transition-group name="fade" tag="div">
-			<div v-for="i in [index]" :key="i">
-				<img :src="currentImg" class="w-full" />
+		<button class="slider-nav-btn left-4" @click="prev" href="#">&#10094;</button>
+		<transition-group name="fade" tag="div" class="inline-block">
+			<div v-for="src in photos" :key="src">
+				<img :src="src" class="w-full" v-show="currentImg===src" />
 			</div>
 		</transition-group>
-		<a class="next" @click="next" href="#">&#10095;</a>
+		<button class="slider-nav-btn right-4" @click="next" href="#">&#10095;</button>
 	</div>
 </template>
+
 <script lang="ts">
-	export default {
-		name: "Slider",
-		props: ["photos"],
-		data: function (): { index: number } {
-			return {
-				index: 0,
-			};
-		},
+	import { Component, Prop, Vue } from "vue-property-decorator";
 
-		mounted: function (): void {
+	@Component
+	export default class Slider extends Vue {
+		@Prop() photos!: string[];
+		index = 0;
+		interval!: number;
+
+		get currentImg(): string {
+			return this.photos[Math.abs(this.index) % this.photos.length];
+		}
+
+		startSlide(): void {
+			// this.interval=setInterval(this.next, 6000);
+		}
+
+		next(): void {
+			this.index += 1;
+		}
+
+		prev(): void {
+			this.index -= 1;
+		}
+
+		mounted(): void {
 			this.startSlide();
-		},
-
-		methods: {
-			startSlide: function (): void {
-				setInterval(this.next, 4000);
-			},
-
-			next: function (): void {
-				this.index += 1;
-			},
-			prev: function (): void {
-				this.index -= 1;
-			},
-		},
-
-		computed: {
-			currentImg: function (): string {
-				return (this.photos as string[])[Math.abs(this.index) % this.photos.length];
-			},
-		},
-	};
+		}
+	}
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	.fade-enter-active,
 	.fade-leave-active {
@@ -52,6 +50,7 @@
 		visibility: visible;
 		position: absolute;
 		opacity: 1;
+		width: 70vw;
 	}
 
 	.fade-enter,

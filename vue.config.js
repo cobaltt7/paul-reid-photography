@@ -23,7 +23,7 @@ const galleries = fileSystem
 							path.resolve(__dirname, "public"),
 							path.resolve(PHOTOS_DIR, gallery, photo),
 						)
-						.replace(/\\/, "/"),
+						.replaceAll("\\", "/"),
 				),
 		};
 	});
