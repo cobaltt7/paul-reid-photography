@@ -1,14 +1,14 @@
 <template>
 	<div class="relative">
 			<div
-				class="animate-pulse w-full min-h-52 bg-gray-700"
+				class="animate-pulse w-full min-h-52 h-1/4 bg-gray-700"
 				style="aspect-ratio: 1;"
 				v-show="loadedCount !== photos.length"
 			></div>
 		<div
 			v-for="src in photos"
 			:key="src"
-			class="w-full absolute top-0"
+			class="w-full absolute top-0 ease-linear transition-all duration-700"
 			:class="currentImg === src ? 'opacity-100 visible' : 'invisible opacity-0'"
 				v-show="loadedCount === photos.length"
 		>
@@ -26,6 +26,8 @@
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
 
+const PHOTOS_AUTONAV_DELEAY=10000
+
 	@Component
 	export default class Slider extends Vue {
 		@Prop() photos!: string[];
@@ -38,15 +40,19 @@
 		}
 
 		startSlide(): void {
-			// this.interval=setInterval(this.next, 6000);
+			this.interval=setInterval(this.next, PHOTOS_AUTONAV_DELEAY);
 		}
 
 		next(): void {
 			this.index += 1;
+			clearInterval(this.interval);
+			this.startSlide()
 		}
 
 		prev(): void {
 			this.index -= 1;
+			clearInterval(this.interval);
+			this.startSlide()
 		}
 
 		mounted(): void {
