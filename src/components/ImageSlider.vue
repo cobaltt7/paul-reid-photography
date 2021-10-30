@@ -1,12 +1,14 @@
 <template>
-	<div class="slider-container">
-		<button class="slider-nav-btn left-4" @click="prev" href="#">&#10094;</button>
-		<transition-group name="fade" tag="div" class="inline-block">
-			<div v-for="src in photos" :key="src">
-				<img :src="src" class="w-full" v-show="currentImg===src" />
-			</div>
-		</transition-group>
-		<button class="slider-nav-btn right-4" @click="next" href="#">&#10095;</button>
+	<div class="relative w-full">
+		<div v-for="src in photos" :key="src" class="w-full absolute top-0"
+				:class="currentImg === src ? 'opacity-100 visible' : 'invisible opacity-0'">
+			<button class="slider-nav-btn left-4" @click="prev" href="#">&#10094;</button>
+			<img
+				:src="src"
+				class="inline-block w-full"
+			/>
+			<button class="slider-nav-btn right-4" @click="next" href="#">&#10095;</button>
+		</div>
 	</div>
 </template>
 
@@ -59,30 +61,7 @@
 		opacity: 0;
 	}
 
-	.prev,
-	.next {
-		cursor: pointer;
-		width: auto;
-		padding: 16px;
-		color: white;
-		font-weight: bold;
-		font-size: 18px;
-		transition: 0.7s ease;
-		border-radius: 0 4px 4px 0;
-		text-decoration: none;
-		user-select: none;
-	}
-
-	.next {
-		right: 0;
-	}
-
-	.prev {
-		left: 0;
-	}
-
-	.prev:hover,
-	.next:hover {
-		background-color: rgba(0, 0, 0, 0.9);
+	.slider-nav-btn {
+		@apply h-6 w-6 text-base top-1/2 -translate-y-1/2 font-bold cursor-pointer text-center select-none inline-block absolute text-white rounded-full bg-black;
 	}
 </style>
