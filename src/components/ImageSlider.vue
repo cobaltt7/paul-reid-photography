@@ -1,11 +1,22 @@
 <template>
-	<div class="relative w-full">
-		<div v-for="src in photos" :key="src" class="w-full absolute top-0"
-				:class="currentImg === src ? 'opacity-100 visible' : 'invisible opacity-0'">
+	<div class="relative">
+			<div
+				class="animate-pulse w-full min-h-52 bg-gray-700"
+				style="aspect-ratio: 1;"
+				v-show="loadedCount !== photos.length"
+			></div>
+		<div
+			v-for="src in photos"
+			:key="src"
+			class="w-full absolute top-0"
+			:class="currentImg === src ? 'opacity-100 visible' : 'invisible opacity-0'"
+				v-show="loadedCount === photos.length"
+		>
 			<button class="slider-nav-btn left-4" @click="prev" href="#">&#10094;</button>
 			<img
 				:src="src"
 				class="inline-block w-full"
+				@load="loadedCount++"
 			/>
 			<button class="slider-nav-btn right-4" @click="next" href="#">&#10095;</button>
 		</div>
@@ -19,6 +30,7 @@
 	export default class Slider extends Vue {
 		@Prop() photos!: string[];
 		index = 0;
+		loadedCount = 0;
 		interval!: number;
 
 		get currentImg(): string {
@@ -45,22 +57,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	.fade-enter-active,
-	.fade-leave-active {
-		transition: all 0.9s ease;
-		overflow: hidden;
-		visibility: visible;
-		position: absolute;
-		opacity: 1;
-		width: 70vw;
-	}
-
-	.fade-enter,
-	.fade-leave-to {
-		visibility: hidden;
-		opacity: 0;
-	}
-
 	.slider-nav-btn {
 		@apply h-6 w-6 text-base top-1/2 -translate-y-1/2 font-bold cursor-pointer text-center select-none inline-block absolute text-white rounded-full bg-black;
 	}
