@@ -13,7 +13,7 @@
 		"@tailwindcss/postcss7-compat": "^2.0.2",
 		"@tailwindcss/typography": "^0.4.1",
 		"autoprefixer": "^9.8.8",
-		"core-js": "^3.6.5",
+		"core-js": "^3.19.0",
 		"cssnano": "^4.1.11",
 		"postcss": "^7",
 		"postcss-advanced-variables": "^3.0.1",
