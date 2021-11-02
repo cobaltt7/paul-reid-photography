@@ -1,6 +1,9 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
+import Posts from "../views/Posts.vue";
+import NotFound from "../views/404.vue";
+import Gallery from "../views/Gallery.vue"
 
 Vue.use(VueRouter);
 
@@ -9,20 +12,22 @@ const routes: RouteConfig[] = [
 		path: "/",
 		component: Home,
 	},
+	{
+		path: "/posts",
+		component: Posts,
+		props: { galleries },
+	},
 ];
 galleries.forEach((gallery) => {
 	routes.push({
 		path: "/" + gallery.slug,
-		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
-		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "gallery" */ "../views/Gallery.vue"),
+		component: Gallery,
 		props: { gallery },
 	});
 });
 routes.push({
 	path: "*",
-	component: () => import(/* webpackChunkName: "404" */ "../views/404.vue"),
+	component: NotFound,
 });
 
 const router = new VueRouter({

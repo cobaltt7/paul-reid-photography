@@ -6,7 +6,6 @@
 </template>
 
 <script>
-	// @ is an alias to /src
 	import ImageSlider from "../components/ImageSlider.vue";
 	export default {
 		props: ["gallery"],
