@@ -43,7 +43,6 @@
 		"eslint": "^6.7.2",
 		"eslint-plugin-prettier": "^3.4.1",
 		"eslint-plugin-vue": "^6.2.2",
-		"lint-staged": "^9.5.0",
 		"prettier": "^2.2.1",
 		"prettier-plugin-ini": "^0.3.1",
 		"prettier-plugin-jsdoc": "^0.3.24",
@@ -89,7 +88,9 @@
 		"vueIndentScriptAndStyle": true,
 		"overrides": [
 			{
-				"files": ["**.md"],
+				"files": [
+					"**.md"
+				],
 				"options": {
 					"trailingComma": "es5",
 					"proseWrap": "never",
@@ -97,7 +98,11 @@
 				}
 			},
 			{
-				"files": ["**.svg", "**.html", "**.xml"],
+				"files": [
+					"**.svg",
+					"**.html",
+					"**.xml"
+				],
 				"options": {
 					"trailingComma": "none",
 					"parser": "html",
@@ -105,19 +110,30 @@
 				}
 			},
 			{
-				"files": ["**.sass", "**.scss", "**.css"],
+				"files": [
+					"**.sass",
+					"**.scss",
+					"**.css"
+				],
 				"options": {
 					"parser": "scss"
 				}
 			},
 			{
-				"files": ["**.env", "**.replit", "**/.tx/config"],
+				"files": [
+					"**.env",
+					"**.replit",
+					"**/.tx/config"
+				],
 				"options": {
 					"parser": "ini"
 				}
 			},
 			{
-				"files": ["**.json", "**.map"],
+				"files": [
+					"**.json",
+					"**.map"
+				],
 				"options": {
 					"parser": "json"
 				}
@@ -141,13 +157,15 @@
 				}
 			}
 		],
-		"plugins": ["prettier-plugin-jsdoc", "prettier-plugin-ini"]
+		"plugins": [
+			"prettier-plugin-jsdoc",
+			"prettier-plugin-ini"
+		]
 	},
 	"browserslist": [
-		"last 2 versions",
-		"not dead",
-		"> 0.1% in us",
-		"maintained node versions",
+		"last 1 ios_saf major versions",
+		"last 1 safari major versions",
+		"> 0.5% and not ie > 0 and not op_mini > 0",
 		"unreleased versions"
 	],
 	"bugs": {
@@ -155,14 +173,11 @@
 		"email": "paul@reid-family.org"
 	},
 	"gitHooks": {
-		"pre-commit": "lint-staged"
+		"pre-commit": "# todo lint-staged"
 	},
-	"homepage": "https://paul-reid.net",
-	"keywords": [],
+	"homepage": "https://paul-reid.net/",
+	"keywords": ["#todo"],
 	"license": "MIT",
-	"lint-staged": {
-		"*.{js,jsx,vue,ts,tsx}": ["vue-cli-service lint", "git add"]
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/RedGuy12/paul-reid-photography.git"
