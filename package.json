@@ -49,7 +49,7 @@
 		"typescript": "~4.4.4",
 		"vue-cli-plugin-tailwind": "~2.0.6",
 		"vue-template-compiler": "^2.6.11",
-		"webpack": "^4.46.0"
+		"webpack": "^5.62.1"
 	},
 	"eslintConfig": {
 		"root": true,
@@ -67,10 +67,8 @@
 			"ecmaVersion": 2020
 		},
 		"rules": {
-			"prettier/prettier": 0
-		},
-		"globals": {
-			"galleries": true
+			"prettier/prettier": 0,
+			"@typescript-eslint/no-namespace":0
 		}
 	},
 	"prettier": {
