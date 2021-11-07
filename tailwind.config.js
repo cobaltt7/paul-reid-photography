@@ -14,7 +14,7 @@ module.exports = {
 	plugins: [typography],
 
 	purge: {
-		content: ["./public/**/*.html", "./src/**/*.vue"],
+		content: ["./{public,src}/**/*.{vue,html}"],
 		mode: "all",
 
 		options: {
