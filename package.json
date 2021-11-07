@@ -67,10 +67,8 @@
 			"ecmaVersion": 2020
 		},
 		"rules": {
-			"prettier/prettier": 0
-		},
-		"globals": {
-			"galleries": true
+			"prettier/prettier": 0,
+			"@typescript-eslint/no-namespace":0
 		}
 	},
 	"prettier": {

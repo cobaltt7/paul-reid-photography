@@ -11,12 +11,20 @@ const galleries = fileSystem
 	.readdirSync(PHOTOS_DIR)
 	.filter((gallery) => fileSystem.lstatSync(path.resolve(PHOTOS_DIR, gallery)).isDirectory())
 	.map((gallery) => {
+		const [, date, title] = gallery.match(/^(\d{8}) (.*)$/);
+
 		return {
-			...require(path.resolve(PHOTOS_DIR, gallery, "./_data.json")),
-			slug: gallery,
+			...new Promise((resolve) =>
+				// wrapped in a promise so we can use `.catch` for if it doesn't exist
+				resolve(require(path.resolve(process.cwd(), "./_meta.json"))),
+			).catch(() => ({})),
+			date,
+			title,
+			slug: title.toLowerCase().replace(/[^\w]+/g, "-"),
 			photos: fileSystem
 				.readdirSync(path.resolve(PHOTOS_DIR, gallery))
 				.filter((photo) => path.extname(photo) === ".jpg")
+				.sort()
 				.map((photo) =>
 					path
 						.relative(
@@ -32,11 +40,11 @@ const galleries = fileSystem
 module.exports = {
 	// options...
 	productionSourceMap: false,
-	configureWebpack(config) {
+	configureWebpack() {
 		return {
 			plugins: [
 				new webpack.DefinePlugin({
-					galleries: JSON.stringify(galleries),
+					__galleries__: JSON.stringify(galleries),
 				}),
 			],
 		};

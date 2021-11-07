@@ -1,0 +1,11 @@
+photos/
+  DATE TITLE/ # slug auto-generated
+    XXX.jpg # XXX is the image index
+  DATE TITLE/
+    DATE TITLE/ # subgallery
+      XXX.jpg
+    DATE TITLE/
+      XXX.jpg
+  ...
+
+what about descriptions?

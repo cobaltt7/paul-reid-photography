@@ -3,7 +3,8 @@ import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 import Posts from "../views/Posts.vue";
 import NotFound from "../views/404.vue";
-import Gallery from "../views/Gallery.vue"
+import Gallery from "../views/Gallery.vue";
+import { galleries } from "../global";
 
 Vue.use(VueRouter);
 

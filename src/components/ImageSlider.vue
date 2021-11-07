@@ -1,23 +1,19 @@
 <template>
 	<div class="relative">
-			<div
-				class="animate-pulse w-full min-h-52 h-1/4 bg-gray-700"
-				style="aspect-ratio: 1;"
-				v-show="loadedCount !== photos.length"
-			></div>
+		<div
+			class="animate-pulse w-full min-h-52 h-1/4 bg-gray-700"
+			style="aspect-ratio: 1"
+			v-show="loadedCount !== photos.length"
+		></div>
 		<div
 			v-for="src in photos"
 			:key="src"
 			class="w-full absolute top-0 ease-linear transition-all duration-700"
 			:class="currentImg === src ? 'opacity-100 visible' : 'invisible opacity-0'"
-				v-show="loadedCount === photos.length"
+			v-show="loadedCount === photos.length"
 		>
 			<button class="slider-nav-btn left-4" @click="prev" href="#">&#10094;</button>
-			<img
-				:src="src"
-				class="inline-block w-full"
-				@load="loadedCount++"
-			/>
+			<img :src="src" class="inline-block w-full" @load="loadedCount++" />
 			<button class="slider-nav-btn right-4" @click="next" href="#">&#10095;</button>
 		</div>
 	</div>
@@ -26,7 +22,7 @@
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
 
-const PHOTOS_AUTONAV_DELEAY=10000
+	const PHOTOS_AUTONAV_DELEAY = 10000;
 
 	@Component
 	export default class Slider extends Vue {
@@ -40,19 +36,19 @@ const PHOTOS_AUTONAV_DELEAY=10000
 		}
 
 		startSlide(): void {
-			this.interval=setInterval(this.next, PHOTOS_AUTONAV_DELEAY);
+			this.interval = setInterval(this.next, PHOTOS_AUTONAV_DELEAY);
 		}
 
 		next(): void {
 			this.index += 1;
 			clearInterval(this.interval);
-			this.startSlide()
+			this.startSlide();
 		}
 
 		prev(): void {
 			this.index -= 1;
 			clearInterval(this.interval);
-			this.startSlide()
+			this.startSlide();
 		}
 
 		mounted(): void {
