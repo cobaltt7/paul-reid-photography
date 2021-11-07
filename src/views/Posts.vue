@@ -4,7 +4,7 @@
 		<div v-for="i in hi" @click="log({ $refs })" class="inline-block border" :key="i">
 			{{ i }}
 		</div>
-		{{ h() }}
+		{{ h }}
 	</div>
 </template>
 
@@ -22,7 +22,7 @@
 			}
 		}
 		log = console.log;
-		h() {
+		get h() {
 			return window.innerHeight;
 		}
 		// List = List;

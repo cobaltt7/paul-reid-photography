@@ -9,6 +9,7 @@ declare global {
 			[elem: string]: unknown;
 		}
 	}
+	/** @private - Don't use! Always import `galleries` from `/src/global` instead. */
 	const __galleries__: galleriesType;
 }
 

@@ -8,4 +8,6 @@ photos/
       XXX.jpg
   ...
 
-what about descriptions?
+what about place descriptions?
+
+we can get all else from photo metadata hopefully

@@ -1,6 +1,6 @@
 <template>
 	<div id="page">
-		<h1>Gallery: {{ gallery.name }}</h1>
+		<h1>Gallery: {{ gallery.title }}</h1>
 		<ImageSlider :photos="gallery.photos" />
 	</div>
 </template>

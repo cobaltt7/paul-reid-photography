@@ -13,6 +13,8 @@ const galleries = fileSystem
 	.map((gallery) => {
 		const [, date, title] = gallery.match(/^(\d{8}) (.*)$/);
 
+const slug=title.toLowerCase().replace(/[^\w]+/g, "-")
+
 		return {
 			...new Promise((resolve) =>
 				// wrapped in a promise so we can use `.catch` for if it doesn't exist
@@ -20,7 +22,7 @@ const galleries = fileSystem
 			).catch(() => ({})),
 			date,
 			title,
-			slug: title.toLowerCase().replace(/[^\w]+/g, "-"),
+			slug,
 			photos: fileSystem
 				.readdirSync(path.resolve(PHOTOS_DIR, gallery))
 				.filter((photo) => path.extname(photo) === ".jpg")
@@ -28,7 +30,7 @@ const galleries = fileSystem
 				.map((photo) =>
 					path
 						.relative(
-							path.resolve(__dirname, "public"),
+							path.resolve(__dirname, "public", slug),
 							path.resolve(PHOTOS_DIR, gallery, photo),
 						)
 						.replaceAll("\\", "/"),
