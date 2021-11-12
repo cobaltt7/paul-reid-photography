@@ -13,7 +13,7 @@ const galleries = fileSystem
 	.map((gallery) => {
 		const [, date, title] = gallery.match(/^(\d{8}) (.*)$/);
 
-const slug=title.toLowerCase().replace(/[^\w]+/g, "-")
+		const slug = title.toLowerCase().replace(/[^\w]+/g, "-");
 
 		return {
 			...new Promise((resolve) =>

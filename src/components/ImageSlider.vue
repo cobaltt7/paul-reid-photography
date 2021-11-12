@@ -26,7 +26,8 @@
 
 	@Component
 	export default class Slider extends Vue {
-		@Prop() photos!: string[];
+		/** @readonly */
+		@Prop() photos!: readonly string[];
 		index = 0;
 		loadedCount = 0;
 		interval!: number;
@@ -51,9 +52,9 @@
 			this.startSlide();
 		}
 
-		incrementLoadedCount():number {
+		incrementLoadedCount(): number {
 			this.loadedCount++;
-			if(this.loadedCount === this.photos.length) this.startSlide();
+			if (this.loadedCount === this.photos.length) this.startSlide();
 			return this.loadedCount;
 		}
 	}

@@ -1,5 +1,5 @@
 import Vue, { VNode } from "vue";
-import type { galleries as galleriesType } from "./types";
+import type { Galleries as galleriesType } from "./types";
 
 declare global {
 	namespace JSX {

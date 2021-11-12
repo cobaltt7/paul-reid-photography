@@ -9,7 +9,7 @@
 * {
 	@apply selection:bg-red-500;
 
-	a:not(.auth-button):not(.allow-button) {
+	a {
 		@apply text-blue-700
 			no-underline;
 
