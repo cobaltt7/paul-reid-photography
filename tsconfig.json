@@ -1,5 +1,7 @@
 {
+	"allowJs": true,
 	"compilerOptions": {
+		"checkJs": true,
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
@@ -23,7 +25,22 @@
 		"sourceMap": true,
 		"baseUrl": ".",
 		"types": ["webpack-env"],
-		"lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+		"lib": [
+			"es2015",
+			"es2016",
+			"es2017",
+			"es2018",
+			"es2019",
+			"es2020",
+			"es5",
+			"es6",
+			"esnext",
+			"dom",
+			"dom.iterable",
+			"scripthost"
+		]
 	},
-	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"]
+	"exclude": ["node_modules", ".git", "dist"],
+	"typeAcquisition": { "enable": true },
+	"include": ["./*", "./**/*", "./.*/**/*"]
 }

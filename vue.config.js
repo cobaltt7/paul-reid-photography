@@ -6,12 +6,12 @@ const webpack = require("webpack");
 
 const PHOTOS_DIR = path.resolve(__dirname, "./public/img/photos");
 
-/** @type {import("./src/types").galleries} */
+/** @type {import("./src/types").Galleries} */
 const galleries = fileSystem
 	.readdirSync(PHOTOS_DIR)
 	.filter((gallery) => fileSystem.lstatSync(path.resolve(PHOTOS_DIR, gallery)).isDirectory())
 	.map((gallery) => {
-		const [, date, title] = gallery.match(/^(\d{8}) (.*)$/);
+		const [, year, month, day, title] = gallery.match(/^(\d{4})(\d{2})(\d{2}) (.*)$/) || [];
 
 		const slug = title.toLowerCase().replace(/[^\w]+/g, "-");
 
@@ -20,7 +20,7 @@ const galleries = fileSystem
 				// wrapped in a promise so we can use `.catch` for if it doesn't exist
 				resolve(require(path.resolve(process.cwd(), "./_meta.json"))),
 			).catch(() => ({})),
-			date,
+			date: { year: +year, month: +month, day: +day },
 			title,
 			slug,
 			photos: fileSystem

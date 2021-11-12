@@ -6,4 +6,4 @@ import router from "./router";
 new Vue({
 	router,
 	render: (createElement) => createElement(App),
-}).$mount("#app");
+}).$mount("main");

@@ -47,7 +47,7 @@ body {
 		dark:bg-warmGray-700;
 }
 
-#app {
+main {
 	@apply h-full prose m-auto;
 
 	section {

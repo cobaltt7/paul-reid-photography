@@ -30,7 +30,7 @@
 		@Prop() photos!: readonly string[];
 		index = 0;
 		loadedCount = 0;
-		interval!: number;
+		interval!: NodeJS.Timer;
 
 		get currentImg(): string {
 			return this.photos[Math.abs(this.index) % this.photos.length];
