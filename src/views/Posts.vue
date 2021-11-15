@@ -1,32 +1,32 @@
 <template>
-	<!-- <List galleries="galleries"/> -->
-	<div style="grid-auto-rows: 6rem" class="grid grid-flow-row-dense grid-cols-3 gap-5">
-		<a
-			v-for="i in galleries"
-			:data-index="i"
-			class="
-				inline-block
-				border border-solid border-black
-				hover:no-underline
-				no-underline
-				group
-				relative
-				gallery
-			"
-			:key="i.slug"
-			:href="i.slug"
-			><h6 class="group-hover:no-underline">
-				{{ i.title }}
-			</h6>
-			<img :src="i.photos[0]" />
-			<i class="group-hover:color-inherit absolute bottom-0 color-i">{{ i.date }}</i>
-		</a>
+	<div>
+		<!-- Sizing helpers - These are never show to the user. -->
+		<div ref="galleryItemSize" style="width: var(--gallery-item-width)"></div>
+		<div ref="gutterSize" class="w-5"></div>
+		<!-- <List galleries="galleries"/> -->
+		<div ref="grid">
+			<a
+				v-for="i in galleries"
+				:data-index="i"
+				style="margin-bottom: var(--gutter-size); width: var(--gallery-item-width)"
+				class="inline-block border border-solid border-black group gallery"
+				:key="i.slug"
+				:href="i.slug"
+				><h6 class="group-hover:no-underline">
+					{{ i.title }}
+				</h6>
+				<img :src="i.photos[0]" />
+				<i class="group-hover:text-[color:inherit]">{{ i.date }}</i>
+			</a>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
 	import type { Galleries } from "../types";
+	import Masonry from "masonry-layout";
+	import waitForImages from "../lib/waitForImages";
 	// import type {NodeListOf} from "/../../../node_modules/@types/node";
 	// import List from "../components/List.vue";
 
@@ -35,37 +35,41 @@
 		/** @readonly */
 		@Prop() galleries!: Galleries;
 
-		observer = new ResizeObserver((entries) =>
-			window.requestAnimationFrame(() =>
-				entries.forEach(({ target }) =>
-					this.setRowSpan(target.parentElement as HTMLAnchorElement),
-				),
-			),
-		);
+		async mounted(): Promise<void> {
+			const grid = this.$refs.grid;
+			if (!(grid instanceof Element)) throw new Error("Grid element not found");
+			await waitForImages(grid);
 
-		mounted(): void {
-			for (const element of this.$el.querySelectorAll(
-				"a.gallery",
-			) as NodeListOf<HTMLAnchorElement>) {
-				this.setRowSpan(element);
-				for (const el of element.children) {
-					this.observer.observe(el, {
-						box: "border-box",
-					});
-				}
-			}
-		}
+			const gutterSize = (
+				this.$refs.gutterSize as HTMLDivElement | undefined
+			)?.getBoundingClientRect().width;
+			if (typeof gutterSize !== "number") throw new Error("Spacer element not found");
+			document.documentElement.style.setProperty("--gutter-size", gutterSize + "px");
 
-		setRowSpan(el: HTMLAnchorElement): string {
-			let height = 0;
+			const spacerElement = this.$refs.galleryItemSize;
+			if (!(spacerElement instanceof HTMLDivElement))
+				throw new Error("Spacer element not found");
 
-			[...el.children].forEach((child) => {
-				height += Math.abs(child.getBoundingClientRect().height);
-			});
-
-			return (el.style.gridRowEnd = `span ${Math.ceil(height / 100) || 1}`);
+			new Masonry(grid, {
+				itemSelector: ".gallery",
+				columnWidth: spacerElement.getBoundingClientRect().width,
+				percentPosition: true,
+				gutter: gutterSize,
+				horizontalOrder: true,
+				transitionDuration: 0,
+			}).layout?.();
 		}
 	}
 </script>
 
-<style scoped></style>
+<style>
+	:root {
+		/* (full width - (gutter size * (column count - 1))) divided into x columns */
+		/* This determines the width of each block. */
+		--gallery-item-width: calc(
+			(100% - var(--gutter-size) * (var(--column-count) - 1)) / var(--column-count)
+		);
+
+		--column-count: 3;
+	}
+</style>
