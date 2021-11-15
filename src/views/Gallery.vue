@@ -5,12 +5,16 @@
 	</div>
 </template>
 
-<script>
-	import ImageSlider from "../components/ImageSlider.vue";
-	export default {
-		props: ["gallery"],
-		components: {
-			ImageSlider,
-		},
-	};
+<script lang="ts">
+	import { Component, Prop, Vue } from "vue-property-decorator";
+import ImageSlider from "../components/ImageSlider.vue";
+	import type {Gallery} from "../types"
+
+	@Component({
+		components: { ImageSlider }
+	})
+	export default class Post extends Vue {
+		/** @readonly */
+		@Prop() gallery!: Gallery;
+	}
 </script>
