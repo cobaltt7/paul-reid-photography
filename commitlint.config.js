@@ -16,7 +16,7 @@ module.exports = {
 				"ci", // any automatic checks - actions, hooks, husky, etc
 				"lint", // eslint, prettier, commitlint, etc
 				"build", // build steps - webpack, babel, terser, etc
-				"refacor", // rewriting things
+				"refactor", // rewriting things
 				"deps", // updating dependencies
 				"misc", // anything not included (consider adding new scopes)
 
