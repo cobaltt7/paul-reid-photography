@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
-import Posts from "../views/Posts.vue";
+import Posts from "../views/List.vue";
 import NotFound from "../views/404.vue";
 import Gallery from "../views/Gallery.vue";
-import { galleries } from "./types/global";
+import { galleries } from "../types/global";
 
 Vue.use(VueRouter);
 

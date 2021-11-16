@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "./lib/registerServiceWorker";
-import router from "./router";
+import router from "./lib/router";
 
 new Vue({
 	router,
