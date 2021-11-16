@@ -1,15 +1,28 @@
 {
+	"private": true,
 	"name": "paul-reid-photography",
 	"version": "1.0.0",
-	"private": true,
 	"description": "TODO",
-	"author": "Paul Reid",
+	"license": "MIT",
+	"author": {
+		"name": "Paul Reid"
+	},
+	"homepage": "https://paul-reid.net/",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/RedGuy12/paul-reid-photography.git"
+	},
+	"bugs": {
+		"url": "https://github.com/RedGuy12/paul-reid-photography/issues/new",
+		"email": "paul@reid-family.org"
+	},
 	"scripts": {
-		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
+		"commit": "commit",
 		"lint": "vue-cli-service lint",
+		"lint:package-json": "npx prettier-package-json --write --tab-width 4 --use-tabs --expand-users",
 		"prepare": "husky install",
-		"commit": "commit"
+		"serve": "vue-cli-service serve"
 	},
 	"dependencies": {
 		"@tailwindcss/postcss7-compat": "^2.0.2",
@@ -56,6 +69,7 @@
 		"eslint-plugin-vue": "^6.2.2",
 		"husky": "^7.0.4",
 		"prettier": "^2.2.1",
+		"prettier-package-json": "^2.6.0",
 		"prettier-plugin-ini": "^0.3.1",
 		"prettier-plugin-jsdoc": "^0.3.24",
 		"typescript": "~4.4.4",
@@ -63,6 +77,15 @@
 		"vue-template-compiler": "^2.6.11",
 		"webpack": "^4.46.0"
 	},
+	"keywords": [
+		"#todo"
+	],
+	"browserslist": [
+		"last 1 ios_saf major versions",
+		"last 1 safari major versions",
+		"> 0.5% and not ie > 0 and not op_mini > 0",
+		"unreleased versions"
+	],
 	"eslintConfig": {
 		"root": true,
 		"env": {
@@ -88,6 +111,9 @@
 			"prettier/prettier": 0,
 			"@typescript-eslint/no-namespace": 0
 		}
+	},
+	"gitHooks": {
+		"pre-commit": "# todo lint-staged"
 	},
 	"prettier": {
 		"iniSpaceAroundEquals": true,
@@ -187,27 +213,5 @@
 			"prettier-plugin-jsdoc",
 			"prettier-plugin-ini"
 		]
-	},
-	"browserslist": [
-		"last 1 ios_saf major versions",
-		"last 1 safari major versions",
-		"> 0.5% and not ie > 0 and not op_mini > 0",
-		"unreleased versions"
-	],
-	"bugs": {
-		"url": "https://github.com/RedGuy12/paul-reid-photography/issues/new",
-		"email": "paul@reid-family.org"
-	},
-	"gitHooks": {
-		"pre-commit": "# todo lint-staged"
-	},
-	"homepage": "https://paul-reid.net/",
-	"keywords": [
-		"#todo"
-	],
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/RedGuy12/paul-reid-photography.git"
 	}
 }
