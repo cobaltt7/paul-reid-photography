@@ -51,5 +51,5 @@ module.exports = {
 			],
 		};
 	},
-	css: { extract: true, sourceMap: true },
+	css: {extract: true, sourceMap: true},
 };

@@ -1,4 +1,3 @@
 <template>
-	<div id="page">
-	</div>
+	<div id="page"></div>
 </template>

@@ -7,11 +7,11 @@
 
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
-import ImageSlider from "../components/ImageSlider.vue";
-	import type {Gallery} from "../types"
+	import ImageSlider from "../components/Photos.vue";
+	import type { Gallery } from "../types";
 
 	@Component({
-		components: { ImageSlider }
+		components: { ImageSlider },
 	})
 	export default class Post extends Vue {
 		/** @readonly */

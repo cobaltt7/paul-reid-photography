@@ -4,7 +4,7 @@ import Home from "../views/Home.vue";
 import Posts from "../views/Posts.vue";
 import NotFound from "../views/404.vue";
 import Gallery from "../views/Gallery.vue";
-import { galleries } from "../global";
+import { galleries } from "./types/global";
 
 Vue.use(VueRouter);
 

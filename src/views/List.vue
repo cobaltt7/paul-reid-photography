@@ -5,10 +5,10 @@
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
 	import type { Galleries } from "../types";
-	import List from "../components/List.vue";
+	import List from "../components/Masonry.vue";
 
 	@Component({
-		components: { List }
+		components: { List },
 	})
 	export default class Post extends Vue {
 		/** @readonly */
