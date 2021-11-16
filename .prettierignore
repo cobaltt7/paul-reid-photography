@@ -1,12 +1,11 @@
 !**
-logs
+logs/
 .git/
 dist/
 node_modules/
-.npm
-.upm
-.nvm
+.npm/
+.upm/
+.nvm/
 .eslintcache
 .node_repl_history
-package-lock.json
-package.json
+.husky/_/

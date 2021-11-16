@@ -156,6 +156,16 @@
 			},
 			{
 				"files": [
+					"package.json",
+					"package-lock.json",
+					"npm-shrinkwrap.json"
+				],
+				"options": {
+					"parser": "json-stringify"
+				}
+			},
+			{
+				"files": [
 					"**.code-workspace",
 					".code-snippets",
 					"**/settings.json",
