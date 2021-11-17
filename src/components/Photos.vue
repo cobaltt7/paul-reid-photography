@@ -3,17 +3,17 @@
 		<div
 			class="animate-pulse w-full min-h-52 h-1/4 bg-gray-700"
 			style="aspect-ratio: 1"
-			v-show="loadedCount !== photos.length"
+			v-show="!loaded"
 		></div>
 		<div
 			v-for="src in photos"
 			:key="src"
 			class="w-full absolute top-0 ease-linear transition-all duration-700"
 			:class="currentImg === src ? 'opacity-100 visible' : 'invisible opacity-0'"
-			v-show="loadedCount === photos.length"
+			v-show="loaded"
 		>
 			<button class="slider-nav-btn left-4" @click="prev" href="#">&#10094;</button>
-			<img :src="src" class="inline-block w-full" @load="incrementLoadedCount()" />
+			<img :src="src" class="inline-block w-full"/>
 			<button class="slider-nav-btn right-4" @click="next" href="#">&#10095;</button>
 		</div>
 	</div>
@@ -21,6 +21,7 @@
 
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
+import waitForImages from "../lib/waitForImages";
 
 	const PHOTOS_AUTONAV_DELEAY = 10_000;
 
@@ -29,8 +30,14 @@
 		/** @readonly */
 		@Prop() photos!: readonly string[];
 		index = 0;
-		loadedCount = 0;
+		loaded = false;
 		interval!: NodeJS.Timer;
+
+		async mounted(): Promise<void> {
+			await waitForImages(this.$el)
+			this.loaded = true;
+			this.startSlide();
+		}
 
 		get currentImg(): string {
 			return this.photos[Math.abs(this.index) % this.photos.length];
@@ -50,12 +57,6 @@
 			this.index -= 1;
 			clearInterval(this.interval);
 			this.startSlide();
-		}
-
-		incrementLoadedCount(): number {
-			this.loadedCount++;
-			if (this.loadedCount === this.photos.length) this.startSlide();
-			return this.loadedCount;
 		}
 	}
 </script>
