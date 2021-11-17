@@ -22,7 +22,7 @@ module.exports = {
 
 				"ui", // styling and logos
 				"photos", // new photos
-				"slider", // the slider
+				"fader", // the fader
 				"subgalleries", // nested galleries
 				"service-worker", // service worker
 				"pages", // pages

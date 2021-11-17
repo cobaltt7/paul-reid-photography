@@ -12,9 +12,9 @@
 			:class="currentImg === src ? 'opacity-100 visible' : 'invisible opacity-0'"
 			v-show="loaded"
 		>
-			<button class="slider-nav-btn left-4" @click="prev" href="#">&#10094;</button>
+			<button class="nav-btn left-4" @click="prev" href="#">&#10094;</button>
 			<img :src="src" class="inline-block w-full"/>
-			<button class="slider-nav-btn right-4" @click="next" href="#">&#10095;</button>
+			<button class="nav-btn right-4" @click="next" href="#">&#10095;</button>
 		</div>
 	</div>
 </template>
@@ -26,7 +26,7 @@ import waitForImages from "../lib/waitForImages";
 	const PHOTOS_AUTONAV_DELEAY = 10_000;
 
 	@Component
-	export default class Slider extends Vue {
+	export default class Fader extends Vue {
 		/** @readonly */
 		@Prop() photos!: readonly string[];
 		index = 0;
@@ -63,7 +63,7 @@ import waitForImages from "../lib/waitForImages";
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	.slider-nav-btn {
+	.nav-btn {
 		@apply h-6 w-6 text-base top-1/2 -translate-y-1/2 font-bold cursor-pointer text-center select-none inline-block absolute text-white rounded-full bg-black;
 	}
 </style>
