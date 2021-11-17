@@ -33,5 +33,3 @@ module.exports = {
 		],
 	},
 };
-
-["api", "core", "docs", "ui"];
