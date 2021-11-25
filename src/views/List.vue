@@ -1,14 +1,14 @@
 <template>
-	<List :galleries="galleries" />
+	<Masonry :galleries="galleries" />
 </template>
 
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
 	import type { Galleries } from "../types";
-	import List from "../components/Masonry.vue";
+	import Masonry from "../components/Masonry.vue";
 
 	@Component({
-		components: { List },
+		components: { Masonry },
 	})
 	export default class Post extends Vue {
 		/** @readonly */

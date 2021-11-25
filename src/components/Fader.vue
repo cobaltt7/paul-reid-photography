@@ -7,13 +7,13 @@
 		></div>
 		<div
 			v-for="src in photos"
-			:key="src"
+			:key="src.path"
 			class="w-full absolute top-0 ease-linear transition-all duration-700"
-			:class="currentImg === src ? 'opacity-100 visible' : 'invisible opacity-0'"
+			:class="currentImg === src.path ? 'opacity-100 visible' : 'invisible opacity-0'"
 			v-show="loaded"
 		>
 			<button class="nav-btn left-4" @click="prev" href="#">&#10094;</button>
-			<img :src="src" class="inline-block w-full"/>
+			<img :src="src.path" class="inline-block w-full" />
 			<button class="nav-btn right-4" @click="next" href="#">&#10095;</button>
 		</div>
 	</div>
@@ -21,26 +21,27 @@
 
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
-import waitForImages from "../lib/waitForImages";
+	import type { Photos } from "../types";
+	import waitForImages from "../lib/waitForImages";
 
 	const PHOTOS_AUTONAV_DELEAY = 10_000;
 
 	@Component
 	export default class Fader extends Vue {
 		/** @readonly */
-		@Prop() photos!: readonly string[];
+		@Prop() photos!: Photos;
 		index = 0;
 		loaded = false;
 		interval!: NodeJS.Timer;
 
 		async mounted(): Promise<void> {
-			await waitForImages(this.$el)
+			await waitForImages(this.$el);
 			this.loaded = true;
 			this.startSlide();
 		}
 
 		get currentImg(): string {
-			return this.photos[Math.abs(this.index) % this.photos.length];
+			return this.photos[Math.abs(this.index) % this.photos.length].path;
 		}
 
 		startSlide(): void {

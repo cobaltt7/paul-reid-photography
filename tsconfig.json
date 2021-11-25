@@ -1,6 +1,6 @@
 {
-	"allowJs": true,
 	"compilerOptions": {
+		"allowJs": true,
 		"checkJs": true,
 		"noImplicitAny": true,
 		"noImplicitReturns": true,

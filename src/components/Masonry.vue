@@ -3,7 +3,6 @@
 		<!-- Sizing helpers - These are never show to the user. -->
 		<div ref="galleryItemSize" style="width: var(--gallery-item-width)"></div>
 		<div ref="gutterSize" class="w-5"></div>
-		<!-- <List galleries="galleries"/> -->
 		<div ref="grid">
 			<a
 				v-for="i in galleries"
@@ -15,8 +14,8 @@
 				><h6 class="group-hover:no-underline">
 					{{ i.title }}
 				</h6>
-				<img :src="i.photos[0]" />
-				<i class="group-hover:text-[color:inherit]">{{ i.date }}</i>
+				<img :src="i.photos[0].path" />
+				<i class="group-hover:text-[color:inherit]">{{ i.photos[0].date }}</i>
 			</a>
 		</div>
 	</div>
