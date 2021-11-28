@@ -14,10 +14,25 @@ export type Photo = {
 	height: number;
 	path: string;
 };
+
 export type Photos = Photo[];
-export type Gallery = {
-	slug: string;
+
+type BaseGallery = {
 	title: string;
-	photos: Photos;
+	slug: string;
+	firstPhoto: Photo;
 };
+
+export type ShallowGallery = BaseGallery & {
+	photos: Photos;
+	galleries: undefined;
+};
+
+export type NestedGallery = BaseGallery & {
+	galleries: ShallowGallery[];
+	photos: undefined;
+};
+
+export type Gallery = ShallowGallery | NestedGallery;
+
 export type Galleries = Gallery[];

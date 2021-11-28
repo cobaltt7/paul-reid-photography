@@ -7,7 +7,6 @@ module.exports = {
 		"scope-empty": [2, "never"],
 		"subject-case": [0],
 		"subject-exclamation-mark": [2, "never"],
-		"references-empty": [2, "always"],
 		"scope-enum": [
 			2,
 			"always",
@@ -22,7 +21,9 @@ module.exports = {
 
 				"ui", // styling and logos
 				"photos", // new photos
-				"fader", // the fader
+				"fader", // the fader commitlint
+				"list", // the list component
+				"masonry", // the masonry component
 				"subgalleries", // nested galleries
 				"service-worker", // service worker
 				"pages", // pages

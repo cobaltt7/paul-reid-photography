@@ -47,7 +47,11 @@ body {
 }
 
 main {
-	@apply h-full prose m-auto w-3/4;
+	@apply h-full prose m-auto w-9/12 max-w-6xl;
+
+	a {
+		@apply no-underline;
+	}
 
 	section {
 		h2 {

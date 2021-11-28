@@ -6,104 +6,167 @@ const exifr = require("exifr");
 const sizeOf = require("image-size").default;
 const Fraction = require("fraction.js").default;
 const webpack = require("webpack");
+const slugify = require("slugify").default;
+const SLUGIFY_OPTIONS = {
+	lower: true,
+	strict: true,
+};
 
-/** @returns {Promise<import("./src/types").Galleries>} */
-async function fetchGalleries() {
-	const PHOTOS_DIR = path.resolve(__dirname, "./public/img/photos");
+const PUBLIC_DIR = path.resolve(__dirname, "public");
+const PHOTOS_DIR = path.resolve(PUBLIC_DIR, "img/photos");
 
-	return fileSystem.readdir(PHOTOS_DIR).then(async (files) => {
-		// Filter out non-directories
-		const directories = (
-			await Promise.all(
-				files.map(async (gallery) => ({
-					isDirectory: (
-						await fileSystem.lstat(path.resolve(PHOTOS_DIR, gallery))
-					).isDirectory(),
-					gallery,
-				})),
-			)
-		).filter(({ isDirectory }) => isDirectory);
+/** @param {string} pathToScan */
+async function getDirectoryChildren(pathToScan) {
+	const files = await fileSystem.readdir(pathToScan);
 
-		const promises = directories.map(async ({ gallery: title }) => {
-			const directory = path.resolve(PHOTOS_DIR, title);
-			/** Start loading photo paths in the background. */
-			const photosPromise = fileSystem.readdir(directory);
+	// Filter out non-directories
+	return (
+		await Promise.all(
+			files.map(async (gallery) => {
+				const resolvedPath = path.resolve(pathToScan, gallery);
+				return {
+					isDirectory: (await fileSystem.lstat(resolvedPath)).isDirectory(),
+					gallery: resolvedPath,
+				};
+			}),
+		)
+	)
+		.filter(({ isDirectory }) => isDirectory)
+		.map(({ gallery }) => gallery);
+}
 
-			// Load data from the folder title
-			const slug = title.toLowerCase().replace(/[^\w]+/g, "-");
+/** @param {string} filepath */
+function silentlyLoadFile(filepath) {
+	return new Promise(
+		(resolve) =>
+			// wrapped in a promise so we can use `.catch` for if it doesn't exist
+			resolve(require(filepath)),
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
+	).catch(() => {});
+}
 
-			/**
-			 * Load _meta.json.
-			 *
-			 * @type {{ [key: string]: any }}
-			 */
-			const metaFolder = await new Promise((resolve) =>
-				// wrapped in a promise so we can use `.catch` for if it doesn't exist
-				resolve(require(path.resolve(directory, "./_meta.json"))),
-			).catch(() => ({}));
+/** @param {string} photoPath */
+async function loadExif(photoPath) {
+	const filePromise = fileSystem.readFile(photoPath);
 
-			/** Load photos, remove non-images, sort. */
-			const photoNames = (await photosPromise)
-				.filter((photo) => path.extname(photo) === ".jpg")
-				.sort();
+	/**
+	 * Load EXIF data.
+	 *
+	 * @type {Promise<{
+	 * 	City: string;
+	 * 	State: string;
+	 * 	Country: string;
+	 * 	ExposureTime: string;
+	 * 	ISO: string;
+	 * 	ApertureValue: string;
+	 * 	ExposureCompensation: string;
+	 * 	latitude: string;
+	 * 	longitude: string;
+	 * 	CreateDate: string;
+	 * 	Model: string;
+	 * }>} -
+	 *   Note that only properties we care about are listed here.
+	 */
+	const exifPromise = filePromise.then((buffer) => exifr.parse(buffer, true));
+	const dimensionsPromise = filePromise.then((buffer) => sizeOf(buffer));
+	const [exif, dimensions] = await Promise.all([exifPromise, dimensionsPromise]);
 
-			const photos = await Promise.all(
-				photoNames.map(async (photo) => {
-					const photoPath = path.resolve(PHOTOS_DIR, title, photo);
-					const filePromise = fileSystem.readFile(photoPath);
+	return {
+		city: exif.City,
+		state: exif.State,
+		country: exif.Country,
+		shutterSpeed: new Fraction(exif.ExposureTime).toFraction(),
+		aperture: +exif.ApertureValue,
+		isoSpeed: +exif.ISO,
+		exposure: +exif.ExposureCompensation,
+		model: exif.Model,
+		date: new Date(exif.CreateDate),
+		latitude: +exif.latitude,
+		longitude: +exif.longitude,
+		width: dimensions.width || 0,
+		height: dimensions.height || 0,
+	};
+}
 
-					/**
-					 * Load EXIF data.
-					 *
-					 * @type {Promise<{
-					 * 	City: string;
-					 * 	State: string;
-					 * 	Country: string;
-					 * 	ExposureTime: string;
-					 * 	ISO: string;
-					 * 	ApertureValue: string;
-					 * 	ExposureCompensation: string;
-					 * 	latitude: string;
-					 * 	longitude: string;
-					 * 	CreateDate: string;
-					 * 	Model: string;
-					 * }>} -
-					 *   Note that only properties we care about are listed here.
-					 */
-					const exifPromise = filePromise.then((buffer) => exifr.parse(buffer, true));
-					const dimensionsPromise = filePromise.then((buffer) => sizeOf(buffer));
-					const [exif, dimensions] = await Promise.all([exifPromise, dimensionsPromise]);
+/**
+ * @template {boolean} T
+ * @param {string[]} directories
+ * @param {T & boolean} [shallow]
+ *
+ * @returns {Promise<
+ * 	(T extends true ? import("./src/types").ShallowGallery : import("./src/types").Gallery)[]
+ * >}
+ */
+async function generateGalleryData(directories, shallow) {
+	const promises = directories.map(async (directory) => {
+		/** Start loading photo paths in the background. */
+		const photosPromise = fileSystem.readdir(directory);
 
-					return {
-						city: exif.City,
-						state: exif.State,
-						country: exif.Country,
-						shutterSpeed: new Fraction(exif.ExposureTime).toFraction(),
-						aperture: +exif.ApertureValue,
-						isoSpeed: +exif.ISO,
-						exposure: +exif.ExposureCompensation,
-						model: exif.Model,
-						date: new Date(exif.CreateDate),
-						latitude: +exif.latitude,
-						longitude: +exif.longitude,
-						width: dimensions.width || 0,
-						height: dimensions.height || 0,
-						path: path
-							.relative(path.resolve(__dirname, "public", slug), photoPath)
-							.replaceAll("\\", "/"),
-					};
-				}),
-			);
-			return {
-				...metaFolder,
-				title,
-				slug,
-				photos,
-			};
-		});
+		const title = path.basename(directory);
+		/** Load data from the folder title. */
+		const slug = "/" + slugify(title, SLUGIFY_OPTIONS);
 
-		return Promise.all(promises);
+		/**
+		 * Load _meta.json.
+		 *
+		 * @type {{ [key: string]: any }}
+		 */
+		const metaFolder = (await silentlyLoadFile(path.resolve(directory, "./_meta.json"))) || {};
+
+		const folderChildren = (await photosPromise).map((folderChild) =>
+			path.resolve(directory, folderChild),
+		);
+		if (!shallow) {
+			const isNested = (await fileSystem.lstat(folderChildren[0])).isDirectory();
+
+			if (isNested) {
+				const galleries = await generateGalleryData(folderChildren, true);
+				/** @type {import("./src/types").NestedGallery} */
+				const returnVal = {
+					firstPhoto: galleries[0].photos[0],
+					photos: undefined,
+					title,
+					slug,
+					galleries,
+				};
+				return returnVal;
+			}
+		}
+
+		/** Load photos, remove non-images, sort. */
+		const photoNames = folderChildren.filter((photo) => path.extname(photo) === ".jpg").sort();
+
+		const photos = await Promise.all(
+			photoNames.map(async (photo) => {
+				const photoPath = path.resolve(directory, photo);
+				return {
+					...(await loadExif(photoPath)),
+					path: "/" + path.relative(PUBLIC_DIR, photoPath).replaceAll("\\", "/"),
+				};
+			}),
+		);
+		/** @type {import("./src/types").ShallowGallery} */
+		const returnVal = {
+			...metaFolder,
+			title,
+			slug,
+			photos,
+			firstPhoto: photos[0],
+			galleries: undefined,
+		};
+		return returnVal;
 	});
+
+	return /** @type {any} */ (Promise.all(promises));
+}
+
+/**
+ * @param {string} directoryToScan
+ *
+ * @returns {Promise<import("./src/types").Galleries>}
+ */
+async function fetchGalleries(directoryToScan) {
+	return getDirectoryChildren(directoryToScan).then(generateGalleryData);
 }
 
 /**
@@ -112,14 +175,12 @@ async function fetchGalleries() {
  */
 async function registerCommand(api, command) {
 	api.registerCommand(command + ":prerender", async (args) => {
-		const galleries = await fetchGalleries();
+		const galleries = await fetchGalleries(PHOTOS_DIR);
 		api.configureWebpack(() => {
-			console.log(galleries)
 			return {
 				plugins: [
 					new webpack.DefinePlugin({
 						__galleries__: JSON.stringify(galleries),
-						test:'{}'
 					}),
 				],
 			};
