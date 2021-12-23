@@ -21,9 +21,11 @@ type BaseGallery = {
 	title: string;
 	slug: string;
 	firstPhoto: Photo;
+	featured: Photo;
 };
 
 export type ShallowGallery = BaseGallery & {
+	isFeatured: boolean;
 	photos: Photos;
 	galleries: undefined;
 };
