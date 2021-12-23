@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
+// import Home from "../views/Home.vue";
 import Posts from "../views/List.vue";
 import NotFound from "../views/404.vue";
 import Gallery from "../views/Gallery.vue";
@@ -10,6 +10,15 @@ import type { Galleries, NestedGallery } from "../types";
 
 Vue.use(VueRouter);
 
+const SLUGS: string[] = [];
+
+function generateSlug(slug: string): string {
+	if (SLUGS.includes(slug)) slug += "-"+SLUGS.filter((s) => s.startsWith(slug)).length;
+
+	SLUGS.push(slug);
+	return slug;
+}
+
 function generateGalleryRoutes(
 	galleriesToGenerateRoutes: Galleries,
 	parentGallery ?: NestedGallery
@@ -18,7 +27,7 @@ function generateGalleryRoutes(
 	galleriesToGenerateRoutes.forEach((gallery) => {
 		const hasChildren = !parentGallery && gallery.galleries;
 		result.push({
-			path: (parentGallery?.slug ||"")+ gallery.slug,
+			path: generateSlug((parentGallery?.slug ||"")+ gallery.slug),
 			component: hasChildren ? Subgallery : Gallery,
 			props: { gallery,parentGallery },
 		});
@@ -37,11 +46,11 @@ const router = new VueRouter({
 	base: process.env.BASE_URL,
 	routes: [
 		{
-			path: "/",
-			component: Home,
-		},
-		{
-			path: "/posts",
+			path: generateSlug("/"),
+		// 	component: Home,
+		// },
+		// {
+		// 	path: generateSlug("/all"),
 			component: Posts,
 			props: { galleries },
 		},
