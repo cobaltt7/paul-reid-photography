@@ -14,7 +14,7 @@
 				><h6 class="group-hover:no-underline">
 					{{ i.title }}
 				</h6>
-				<img :src="i.firstPhoto.path" />
+				<img :src="i.featured.path" />
 				<i class="group-hover:text-[color:inherit]">{{ i.firstPhoto.date }}</i>
 			</a>
 		</div>

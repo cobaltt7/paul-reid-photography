@@ -6,7 +6,7 @@
 			v-for="gallery in parentGallery.galleries"
 			:key="gallery"
 		>
-			<img class="m-0 h-full w-auto mr-4" :src="gallery.firstPhoto.path" />
+			<img class="m-0 h-full w-auto mr-4" :src="gallery.featured.path" />
 			<div class="m-0">
 				<h2 class="mt-1">{{gallery.title}}</h2>
 				<p class="mb-1">{{ gallery.firstPhoto.date }}</p>
