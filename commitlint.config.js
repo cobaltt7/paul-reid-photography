@@ -2,7 +2,7 @@
 module.exports = {
 	extends: ["@commitlint/config-conventional"],
 	rules: {
-		"type-enum": [2, "always", ["devx", "feat", "fix"]],
+		"type-enum": [2, "always", ["devx", "feat", "fix", "photos"]],
 		"body-full-stop": [2, "never"],
 		"scope-empty": [2, "never"],
 		"subject-case": [0],
@@ -20,7 +20,6 @@ module.exports = {
 				"misc", // anything not included (consider adding new scopes)
 
 				"ui", // styling and logos
-				"photos", // new photos
 				"fader", // the fader commitlint
 				"list", // the list component
 				"masonry", // the masonry component
@@ -30,6 +29,11 @@ module.exports = {
 				"errors", // error handling
 				"search", // searching
 				"api", // anything for a computer to process - rss feeds, sitemaps, seo, etc
+
+				// only for `photos` type
+				"add", // new gallery
+				"remove", // remove a gallery or photo
+				"update", // update a gallery with new photos
 			],
 		],
 	},
