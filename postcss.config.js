@@ -1,3 +1,4 @@
+// TODO: type it
 module.exports = {
 	map: process.env.NODE_ENV !== "production",
 	parser: "postcss-scss",
