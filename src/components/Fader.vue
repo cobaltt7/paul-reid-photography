@@ -13,7 +13,7 @@
 			v-show="loaded"
 		>
 			<button class="nav-btn left-4" @click="prev" href="#">&#10094;</button>
-			<img :src="src.path" class="inline-block w-full" />
+			<img :src="src.path" class="inline-block mx-auto" />
 			<button class="nav-btn right-4" @click="next" href="#">&#10095;</button>
 		</div>
 	</div>

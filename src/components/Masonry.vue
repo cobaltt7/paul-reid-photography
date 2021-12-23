@@ -67,6 +67,6 @@
 			(100% - var(--gutter-size) * (var(--column-count) - 1)) / var(--column-count)
 		);
 
-		--column-count: 3;
+		--column-count: 4;
 	}
 </style>
