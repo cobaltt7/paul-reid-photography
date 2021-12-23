@@ -1,8 +1,8 @@
 <template>
-<div>
-	<h1>{{gallery.title}}</h1>
-	<List :parentGallery="gallery" />
-</div>
+	<div>
+		<h1>{{ gallery.title }}</h1>
+		<List :parentGallery="gallery" />
+	</div>
 </template>
 
 <script lang="ts">

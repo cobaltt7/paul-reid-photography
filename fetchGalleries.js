@@ -104,8 +104,8 @@ async function generateGalleryData(directories, shallow) {
 
 		// Load data from the folder title.
 		const titleArr = path.basename(directory).split(",");
-		const isFeatured = !!titleArr[0]
-		const title = (titleArr[0]||titleArr[1]).trim()
+		const isFeatured = !!titleArr[0];
+		const title = (titleArr[0] || titleArr[1]).trim();
 		const slug = "/" + slugify(title, SLUGIFY_OPTIONS);
 
 		/**
@@ -122,14 +122,15 @@ async function generateGalleryData(directories, shallow) {
 			const isNested = (await fileSystem.lstat(folderChildren[0])).isDirectory();
 
 			if (isNested) {
-				const galleries = (await generateGalleryData(folderChildren, true));
-				const featuredGallery=galleries.find(gallery=> gallery.isFeatured)||galleries[0]
+				const galleries = await generateGalleryData(folderChildren, true);
+				const featuredGallery =
+					galleries.find((gallery) => gallery.isFeatured) || galleries[0];
 				/** @type {import("./src/types").NestedGallery} */
 				const returnVal = {
 					firstPhoto: galleries[0].firstPhoto,
 					photos: undefined,
 					title,
-					featured: featuredGallery?.featured||featuredGallery?.firstPhoto,
+					featured: featuredGallery?.featured || featuredGallery?.firstPhoto,
 					slug,
 					galleries,
 				};
@@ -142,17 +143,19 @@ async function generateGalleryData(directories, shallow) {
 
 		let featured;
 
-		const photos = (await Promise.all(
-			photoNames.map(async (photo) => {
-				const photoPath = path.resolve(directory, photo);
-				const meta= {
-					...(await loadExif(photoPath)),
-					path: "/" + path.relative(PUBLIC_DIR, photoPath).replaceAll("\\", "/"),
-				};
-				if(path.basename(photoPath).endsWith(",.jpg")) featured=meta
-				return meta
-			}),
-		)).sort((photoA, photoB)=>photoA.date.valueOf()-photoB.date.valueOf())
+		const photos = (
+			await Promise.all(
+				photoNames.map(async (photo) => {
+					const photoPath = path.resolve(directory, photo);
+					const meta = {
+						...(await loadExif(photoPath)),
+						path: "/" + path.relative(PUBLIC_DIR, photoPath).replaceAll("\\", "/"),
+					};
+					if (path.basename(photoPath).endsWith(",.jpg")) featured = meta;
+					return meta;
+				}),
+			)
+		).sort((photoA, photoB) => photoA.date.valueOf() - photoB.date.valueOf());
 		featured ||= photos[0];
 
 		/** @type {import("./src/types").ShallowGallery} */
@@ -164,12 +167,19 @@ async function generateGalleryData(directories, shallow) {
 			firstPhoto: photos[0],
 			featured,
 			galleries: undefined,
-			isFeatured
+			isFeatured,
 		};
 		return returnVal;
-	})
+	});
 
-	return /** @type {any} */ ((await Promise.all(promises)).filter(({photos,galleries})=>galleries?.length||photos?.length).sort((galleryA, galleryB)=>galleryA.firstPhoto.date.valueOf()-galleryB.firstPhoto.date.valueOf()));
+	return /** @type {any} */ (
+		(await Promise.all(promises))
+			.filter(({ photos, galleries }) => galleries?.length || photos?.length)
+			.sort(
+				(galleryA, galleryB) =>
+					galleryA.firstPhoto.date.valueOf() - galleryB.firstPhoto.date.valueOf(),
+			)
+	);
 }
 
 /**

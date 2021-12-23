@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 const SLUGS: string[] = [];
 
 function generateSlug(slug: string): string {
-	if (SLUGS.includes(slug)) slug += "-"+SLUGS.filter((s) => s.startsWith(slug)).length;
+	if (SLUGS.includes(slug)) slug += "-" + SLUGS.filter((s) => s.startsWith(slug)).length;
 
 	SLUGS.push(slug);
 	return slug;
@@ -21,21 +21,18 @@ function generateSlug(slug: string): string {
 
 function generateGalleryRoutes(
 	galleriesToGenerateRoutes: Galleries,
-	parentGallery ?: NestedGallery
+	parentGallery?: NestedGallery,
 ) {
 	const result: RouteConfig[] = [];
 	galleriesToGenerateRoutes.forEach((gallery) => {
 		const hasChildren = !parentGallery && gallery.galleries;
 		result.push({
-			path: generateSlug((parentGallery?.slug ||"")+ gallery.slug),
+			path: generateSlug((parentGallery?.slug || "") + gallery.slug),
 			component: hasChildren ? Subgallery : Gallery,
-			props: { gallery,parentGallery },
+			props: { gallery, parentGallery },
 		});
 		if (hasChildren) {
-			result.push(
-				...generateGalleryRoutes(gallery.galleries,  gallery
-				),
-			);
+			result.push(...generateGalleryRoutes(gallery.galleries, gallery));
 		}
 	});
 	return result;
@@ -47,10 +44,10 @@ const router = new VueRouter({
 	routes: [
 		{
 			path: generateSlug("/"),
-		// 	component: Home,
-		// },
-		// {
-		// 	path: generateSlug("/all"),
+			// 	component: Home,
+			// },
+			// {
+			// 	path: generateSlug("/all"),
 			component: Posts,
 			props: { galleries },
 		},
