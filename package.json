@@ -29,7 +29,7 @@
 		"@tailwindcss/typography": "^0.4.1",
 		"@vue/cli-service": "~4.5.15",
 		"autoprefixer": "^9.8.8",
-		"core-js": "^3.6.5",
+		"core-js": "^3.20.1",
 		"cssnano": "^4.1.11",
 		"imagesloaded": "^4.1.4",
 		"masonry-layout": "^4.2.2",
