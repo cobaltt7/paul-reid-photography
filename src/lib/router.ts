@@ -25,7 +25,7 @@ function generateGalleryRoutes(
 ) {
 	const result: RouteConfig[] = [];
 	galleriesToGenerateRoutes.forEach((gallery) => {
-		const hasChildren = !parentGallery && gallery.galleries;
+		const hasChildren = !parentGallery && "galleries" in gallery;
 		result.push({
 			path: generateSlug((parentGallery?.slug || "") + gallery.slug),
 			component: hasChildren ? SubgalleryView : GalleryView,
@@ -40,7 +40,7 @@ function generateGalleryRoutes(
 
 const router = new VueRouter({
 	mode: "history",
-	base: process.env.BASE_URL,
+	base: process.env.BASE_URL || "",
 	routes: [
 		{
 			path: generateSlug("/"),

@@ -18,19 +18,21 @@ export type Photo = {
 type BaseGallery = {
 	title: string;
 	slug: string;
+};
+type EmptyGallery = BaseGallery & {
+	firstPhoto?: undefined;
+	featured?: undefined;
+};
+type FullGallery = BaseGallery & {
 	firstPhoto: Photo;
 	featured: Photo;
 };
 
-export type ShallowGallery = BaseGallery & {
+export type ShallowGallery = {
 	isFeatured: boolean;
-	photos: Photos;
-	galleries: undefined;
-};
-
-export type NestedGallery = BaseGallery & {
-	galleries: ShallowGallery[];
-	photos: undefined;
-};
+} & ((FullGallery & { photos: Photo[] }) | (EmptyGallery & { photos: never[] }));
+export type NestedGallery =
+	| (FullGallery & { galleries: ShallowGallery[] })
+	| (EmptyGallery & { galleries: never[] });
 
 export type Gallery = ShallowGallery | NestedGallery;

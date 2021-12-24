@@ -98,86 +98,115 @@ async function loadExif(photoPath) {
  * >}
  */
 async function generateGalleryData(directories, shallow) {
-	const promises = directories.map(async (directory) => {
-		/** Start loading photo paths in the background. */
-		const photosPromise = fileSystem.readdir(directory);
+	const promises = directories.map(
+		/** @returns {Promise<import("./src/types").Gallery>} */ async (directory) => {
+			/** Start loading photo paths in the background. */
+			const photosPromise = fileSystem.readdir(directory);
 
-		// Load data from the folder title.
-		const titleArr = path.basename(directory).split(",");
-		const isFeatured = !!titleArr[0];
-		const title = (titleArr[0] || titleArr[1]).trim();
-		const slug = "/" + slugify(title, SLUGIFY_OPTIONS);
+			// Load data from the folder title.
+			const titleArr = path.basename(directory).split(",");
+			const isFeatured = !!titleArr[0];
+			const title = (titleArr[0] || titleArr[1] || "").trim();
+			const slug = "/" + slugify(title, SLUGIFY_OPTIONS);
 
-		/**
-		 * Load _meta.json.
-		 *
-		 * @type {{ [key: string]: any }}
-		 */
-		const metaFolder = (await silentlyLoadFile(path.resolve(directory, "./_meta.json"))) || {};
+			/**
+			 * Load _meta.json.
+			 *
+			 * @type {{ [key: string]: any }}
+			 */
+			const metaFolder =
+				(await silentlyLoadFile(path.resolve(directory, "./_meta.json"))) || {};
 
-		const folderChildren = (await photosPromise).map((folderChild) =>
-			path.resolve(directory, folderChild),
-		);
-		if (!shallow) {
-			const isNested = (await fileSystem.lstat(folderChildren[0])).isDirectory();
+			const folderChildren = (await photosPromise).map((folderChild) =>
+				path.resolve(directory, folderChild),
+			);
+			if (!shallow && folderChildren[0]) {
+				const isNested = (await fileSystem.lstat(folderChildren[0])).isDirectory();
 
-			if (isNested) {
-				const galleries = await generateGalleryData(folderChildren, true);
-				const featuredGallery =
-					galleries.find((gallery) => gallery.isFeatured) || galleries[0];
-				/** @type {import("./src/types").NestedGallery} */
-				const returnVal = {
-					firstPhoto: galleries[0].firstPhoto,
-					photos: undefined,
-					title,
-					featured: featuredGallery?.featured || featuredGallery?.firstPhoto,
-					slug,
-					galleries,
-				};
-				return returnVal;
-			}
-		}
+				if (isNested) {
+					const galleries = await generateGalleryData(folderChildren, true);
+					const featuredGallery =
+						galleries.find((gallery) => gallery.isFeatured) || galleries[0];
 
-		/** Load photos, remove non-images, sort. */
-		const photoNames = folderChildren.filter((photo) => path.extname(photo) === ".jpg").sort();
+					if (!galleries[0]?.firstPhoto || !featuredGallery?.firstPhoto) {
+						return {
+							...metaFolder,
+							title,
+							slug,
+							galleries: [],
+						};
+					}
 
-		let featured;
-
-		const photos = (
-			await Promise.all(
-				photoNames.map(async (photo) => {
-					const photoPath = path.resolve(directory, photo);
-					const meta = {
-						...(await loadExif(photoPath)),
-						path: "/" + path.relative(PUBLIC_DIR, photoPath).replaceAll("\\", "/"),
+					/** @type {import("./src/types").NestedGallery} */
+					const returnVal = {
+						...metaFolder,
+						firstPhoto: galleries[0].firstPhoto,
+						title,
+						featured: featuredGallery.featured,
+						slug,
+						galleries,
 					};
-					if (path.basename(photoPath).endsWith(",.jpg")) featured = meta;
-					return meta;
-				}),
-			)
-		).sort((photoA, photoB) => photoA.date.valueOf() - photoB.date.valueOf());
-		featured ||= photos[0];
+					return returnVal;
+				}
+			}
 
-		/** @type {import("./src/types").ShallowGallery} */
-		const returnVal = {
-			...metaFolder,
-			title,
-			slug,
-			photos,
-			firstPhoto: photos[0],
-			featured,
-			galleries: undefined,
-			isFeatured,
-		};
-		return returnVal;
-	});
+			/** Load photos, remove non-images, sort. */
+			const photoNames = folderChildren
+				.filter((photo) => path.extname(photo) === ".jpg")
+				.sort();
+
+			let featured;
+
+			const photos = (
+				await Promise.all(
+					photoNames.map(async (photo) => {
+						const photoPath = path.resolve(directory, photo);
+						const meta = {
+							...(await loadExif(photoPath)),
+							path: "/" + path.relative(PUBLIC_DIR, photoPath).replaceAll("\\", "/"),
+						};
+						if (path.basename(photoPath).endsWith(",.jpg")) featured = meta;
+						return meta;
+					}),
+				)
+			).sort((photoA, photoB) => photoA.date.valueOf() - photoB.date.valueOf());
+			featured ||= photos[0];
+
+			if (!photos[0] || !featured) {
+				return {
+					...metaFolder,
+					title,
+					slug,
+					photos: [],
+					isFeatured,
+				};
+			}
+
+			/** @type {import("./src/types").ShallowGallery} */
+			const returnVal = {
+				...metaFolder,
+				title,
+				slug,
+				photos,
+				firstPhoto: photos[0],
+				featured,
+				isFeatured,
+			};
+			return returnVal;
+		},
+	);
 
 	return /** @type {any} */ (
 		(await Promise.all(promises))
-			.filter(({ photos, galleries }) => galleries?.length || photos?.length)
+			.filter((gallery) => {
+				if ("galleries" in gallery && gallery.galleries?.length) return true;
+				if ("photos" in gallery && gallery.photos?.length) return true;
+				return false;
+			})
 			.sort(
 				(galleryA, galleryB) =>
-					galleryA.firstPhoto.date.valueOf() - galleryB.firstPhoto.date.valueOf(),
+					(galleryA.firstPhoto?.date.valueOf() || 0) -
+					(galleryB.firstPhoto?.date.valueOf() || 0),
 			)
 	);
 }

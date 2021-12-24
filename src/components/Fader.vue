@@ -40,8 +40,8 @@
 			this.startSlide();
 		}
 
-		get currentImg(): string {
-			return this.photos[Math.abs(this.index) % this.photos.length].path;
+		get currentImg(): string | undefined {
+			return this.photos[Math.abs(this.index) % this.photos.length]?.path;
 		}
 
 		startSlide(): void {
