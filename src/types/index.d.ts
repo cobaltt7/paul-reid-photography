@@ -15,8 +15,6 @@ export type Photo = {
 	path: string;
 };
 
-export type Photos = Photo[];
-
 type BaseGallery = {
 	title: string;
 	slug: string;
@@ -36,5 +34,3 @@ export type NestedGallery = BaseGallery & {
 };
 
 export type Gallery = ShallowGallery | NestedGallery;
-
-export type Galleries = Gallery[];

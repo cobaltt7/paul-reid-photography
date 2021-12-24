@@ -185,7 +185,7 @@ async function generateGalleryData(directories, shallow) {
 /**
  * @param {string} directoryToScan
  *
- * @returns {Promise<import("./src/types").Galleries>}
+ * @returns {Promise<import("./src/types").Gallery[]>}
  */
 async function fetchGalleries(directoryToScan) {
 	return getDirectoryChildren(directoryToScan).then(generateGalleryData);

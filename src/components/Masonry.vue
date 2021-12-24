@@ -23,14 +23,14 @@
 
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
-	import type { Galleries } from "../types";
+	import type { Gallery } from "../types";
 	import Masonry from "masonry-layout";
 	import waitForImages from "../lib/waitForImages";
 
 	@Component
 	export default class List extends Vue {
 		/** @readonly */
-		@Prop() galleries!: Galleries;
+		@Prop() galleries!: readonly Gallery[];
 
 		async mounted(): Promise<void> {
 			const grid = this.$refs.grid;

@@ -21,7 +21,7 @@
 
 <script lang="ts">
 	import { Component, Prop, Vue } from "vue-property-decorator";
-	import type { Photos } from "../types";
+	import type { Photo } from "../types";
 	import waitForImages from "../lib/waitForImages";
 
 	const PHOTOS_AUTONAV_DELEAY = 10_000;
@@ -29,7 +29,7 @@
 	@Component
 	export default class Fader extends Vue {
 		/** @readonly */
-		@Prop() photos!: Photos;
+		@Prop() photos!: readonly Photo[];
 		index = 0;
 		loaded = false;
 		interval!: NodeJS.Timer;
