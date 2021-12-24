@@ -6,16 +6,15 @@
 		<div ref="grid">
 			<a
 				v-for="i in galleries"
-				:data-index="i"
 				style="margin-bottom: var(--gutter-size); width: var(--gallery-item-width)"
 				class="inline-block border border-solid border-black group gallery"
 				:key="i.slug"
 				:href="i.slug"
-				><h6 class="group-hover:no-underline">
+				><h6 class="group-hover:text-blue-900">
 					{{ i.title }}
 				</h6>
 				<img :src="i.featured.path" />
-				<i class="group-hover:text-[color:inherit]">{{ i.firstPhoto.date }}</i>
+				<i class="group-hover:text-warmGray-700">{{ i.firstPhoto.date }}</i>
 			</a>
 		</div>
 	</div>
