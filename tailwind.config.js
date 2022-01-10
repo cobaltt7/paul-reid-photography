@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-"use strict";
-
 /** @file Tailwind Configuration file. */
+"use strict";
 
 /** @see {@link https://tailwindcss.com/docs/customizing-colors#color-palette-reference} For available colors. */
 const colors = require("tailwindcss/colors"),

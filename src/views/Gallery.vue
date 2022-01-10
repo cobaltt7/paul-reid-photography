@@ -1,29 +1,29 @@
+<!-- @file A page to view photos in a single gallery. -->
+
 <template>
 	<div id="page">
 		<h1>{{ gallery.title }}</h1>
 		<a
-			class="text-gray-600 text-sm font-bold"
 			v-if="parentGallery"
+			class="font-bold text-gray-600 text-sm"
 			:href="parentGallery.slug"
 			>{{ parentGallery.title }}</a
 		>
-		<Fader :photos="gallery.photos" />
+		<PhotosFader :photos="gallery.photos" />
 	</div>
 </template>
 
 <script lang="ts">
-	import { Component, Prop, Vue } from "vue-property-decorator";
-	import Fader from "../components/Fader.vue";
+	import { Component, Prop as Property, Vue } from "vue-property-decorator";
+	import PhotosFader from "../components/PhotosFader.vue";
 	import type { ShallowGallery, NestedGallery } from "../types";
 
-	@Component({
-		components: { Fader },
-	})
-	export default class Post extends Vue {
+	@Component({ components: { PhotosFader } })
+	export default class Gallery extends Vue {
 		/** @readonly */
-		@Prop() gallery!: ShallowGallery;
+		@Property() public gallery!: ShallowGallery;
 
 		/** @readonly */
-		@Prop() parentGallery?: NestedGallery;
+		@Property() public parentGallery?: NestedGallery;
 	}
 </script>

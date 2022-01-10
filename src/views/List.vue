@@ -1,17 +1,17 @@
+<!-- @file A page to list galleries. -->
+
 <template>
 	<Masonry :galleries="galleries" />
 </template>
 
 <script lang="ts">
-	import { Component, Prop, Vue } from "vue-property-decorator";
+	import { Component, Prop as Property, Vue } from "vue-property-decorator";
 	import type { Gallery } from "../types";
-	import Masonry from "../components/Masonry.vue";
+	import Masonry from "../components/GalleriesMasonry.vue";
 
-	@Component({
-		components: { Masonry },
-	})
+	@Component({ components: { Masonry } })
 	export default class Post extends Vue {
 		/** @readonly */
-		@Prop() galleries!: readonly Gallery[];
+		@Property() public galleries!: readonly Gallery[];
 	}
 </script>

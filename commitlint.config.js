@@ -1,40 +1,49 @@
+/** @file Commitlint Configuration file. */
+"use strict";
+
 /** @type {import("@commitlint/types").UserConfig} */
-module.exports = {
+
+const config = {
 	extends: ["@commitlint/config-conventional"],
+
 	rules: {
-		"type-enum": [2, "always", ["devx", "feat", "fix", "photos"]],
-		"body-full-stop": [2, "never"],
+		"body-full-stop": [2, "never", "."],
 		"scope-empty": [2, "never"],
-		"subject-case": [0],
-		"subject-exclamation-mark": [2, "never"],
+
 		"scope-enum": [
 			2,
 			"always",
 			[
 				"community", // https://github.com/RedGuy12/paul-reid-photography/community
-				"ci", // any automatic checks - actions, hooks, husky, etc
+				"ci", // Any automatic checks - actions, hooks, husky, etc
 				"lint", // eslint, prettier, commitlint, etc
-				"build", // build steps - webpack, babel, terser, etc
-				"refactor", // rewriting things
-				"deps", // updating dependencies
-				"misc", // anything not included (consider adding new scopes)
+				"build", // Build steps - webpack, babel, terser, etc
+				"refactor", // Rewriting things
+				"deps", // Updating dependencies
+				"misc", // Anything not included (consider adding new scopes)
 
-				"ui", // styling and logos
-				"fader", // the fader commitlint
-				"list", // the list component
-				"masonry", // the masonry component
-				"subgalleries", // nested galleries
-				"service-worker", // service worker
-				"pages", // pages
-				"errors", // error handling
-				"search", // searching
-				"api", // anything for a computer to process - rss feeds, sitemaps, seo, etc
+				"ui", // Styling and logos
+				"fader", // The PhotosFader commitlint
+				"list", // The GalleryList component
+				"masonry", // The masonry component
+				"subgalleries", // Nested galleries
+				"service-worker", // Service worker
+				"pages", // Pages
+				"errors", // Error handling
+				"search", // Searching
+				"api", // Anything for a computer to process - rss feeds, sitemaps, seo, etc
 
-				// only for `photos` type
-				"add", // new gallery
-				"remove", // remove a gallery or photo
-				"update", // update a gallery with new photos
+				// Only for `photos` type
+				"add", // New gallery
+				"remove", // Remove a gallery or photo
+				"update", // Update a gallery with new photos
 			],
 		],
+
+		"subject-case": [0],
+		"subject-exclamation-mark": [2, "never"],
+		"type-enum": [2, "always", ["devx", "feat", "fix", "photos"]],
 	},
 };
+
+module.exports = config;

@@ -1,17 +1,16 @@
-import type { VNode } from "vue";
-import type Vue from "vue";
+/** @file Define Global types. */
+
 import type { Gallery } from ".";
 
 declare global {
-	namespace JSX {
-		type Element = VNode;
-		type ElementClass = Vue;
-		interface IntrinsicElements {
-			[elem: string]: unknown;
-		}
-	}
-	/** @private - Don't use! Always import `galleries` from `/types/global` instead. */
-	const __galleries__: readonly Gallery[];
+	/**
+	 * Don't use! Always import `galleries` from `/types/global` instead.
+	 *
+	 * @private
+	 */
+
+	const _galleries: readonly Gallery[];
 }
 
-export const galleries = __galleries__;
+// eslint-disable-next-line import/prefer-default-export -- We don't want to export default this.
+export const galleries = _galleries;

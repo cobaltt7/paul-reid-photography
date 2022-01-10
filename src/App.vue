@@ -1,3 +1,5 @@
+<!-- @file The template for all pages. -->
+
 <template>
 	<main>
 		<div id="nav">

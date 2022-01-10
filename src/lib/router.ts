@@ -1,60 +1,77 @@
+/** @file Route Paths to views. */
+
 import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
-// import Home from "../views/Home.vue";
-import PostsView from "../views/List.vue";
-import NotFoundView from "../views/404.vue";
-import GalleryView from "../views/Gallery.vue";
-import SubgalleryView from "../views/Subgallery.vue";
+import VueRouter from "vue-router";
+
+// TODO: import Home from "../views/Home.vue";
 import { galleries } from "../types/global";
+import GalleryView from "../views/Gallery.vue";
+import PostsView from "../views/List.vue";
+import NotFoundView from "../views/NotFound.vue";
+import SubgalleryView from "../views/Subgallery.vue";
+
 import type { Gallery, NestedGallery } from "../types";
+import type { RouteConfig } from "vue-router";
 
 Vue.use(VueRouter);
 
+/** @todo Move To fetchGalleries.js. */
 const SLUGS: string[] = [];
 
 function generateSlug(slug: string): string {
-	if (SLUGS.includes(slug)) slug += "-" + SLUGS.filter((s) => s.startsWith(slug)).length;
+	const generatedSlug =
+		slug +
+		(SLUGS.includes(slug) ? `-${SLUGS.filter((used) => used.startsWith(slug)).length}` : "");
 
-	SLUGS.push(slug);
-	return slug;
+	SLUGS.push(generatedSlug);
+
+	return generatedSlug;
 }
 
-function generateGalleryRoutes(
-	galleriesToGenerateRoutes: readonly Gallery[],
+function createGalleryRoutes(
+	sourceGalleries: readonly Gallery[],
 	parentGallery?: NestedGallery,
-) {
+): RouteConfig[] {
 	const result: RouteConfig[] = [];
-	galleriesToGenerateRoutes.forEach((gallery) => {
+
+	for (const gallery of sourceGalleries) {
 		const hasChildren = !parentGallery && "galleries" in gallery;
+
 		result.push({
-			path: generateSlug((parentGallery?.slug || "") + gallery.slug),
 			component: hasChildren ? SubgalleryView : GalleryView,
+			path: generateSlug((parentGallery?.slug ?? "") + gallery.slug),
+			// eslint-disable-next-line unicorn/prevent-abbreviations -- We didn't name this.
 			props: { gallery, parentGallery },
 		});
-		if (hasChildren) {
-			result.push(...generateGalleryRoutes(gallery.galleries, gallery));
-		}
-	});
+
+		if (hasChildren) result.push(...createGalleryRoutes(gallery.galleries, gallery));
+	}
+
 	return result;
 }
 
 const router = new VueRouter({
+	base: process.env.BASE_URL ?? "",
 	mode: "history",
-	base: process.env.BASE_URL || "",
+
 	routes: [
 		{
 			path: generateSlug("/"),
-			// 	component: Home,
-			// },
-			// {
-			// 	path: generateSlug("/all"),
+
+			// / component: Home,
+			// / },
+			// / {
+			// / path: generateSlug("/all"),
+
+			// eslint-disable-next-line sort-keys -- it's not sorted so un-commenting-out the above lines work.
 			component: PostsView,
+			// eslint-disable-next-line unicorn/prevent-abbreviations -- We didn't name this.
 			props: { galleries },
 		},
-		...generateGalleryRoutes(galleries),
+		...createGalleryRoutes(galleries),
 		{
-			path: "*",
 			component: NotFoundView,
+			path: "*",
 		},
 	],
 });

@@ -1,3 +1,4 @@
+/** @file Types That are used multiple types. */
 export type Photo = {
 	city: string;
 	state: string;
@@ -13,16 +14,19 @@ export type Photo = {
 	width: number;
 	height: number;
 	path: string;
+	isFeatured: boolean;
 };
 
 type BaseGallery = {
 	title: string;
 	slug: string;
 };
+
 type EmptyGallery = BaseGallery & {
 	firstPhoto?: undefined;
 	featured?: undefined;
 };
+
 type FullGallery = BaseGallery & {
 	firstPhoto: Photo;
 	featured: Photo;
@@ -30,9 +34,9 @@ type FullGallery = BaseGallery & {
 
 export type ShallowGallery = {
 	isFeatured: boolean;
-} & ((FullGallery & { photos: Photo[] }) | (EmptyGallery & { photos: never[] }));
+} & ((EmptyGallery & { photos: never[] }) | (FullGallery & { photos: Photo[] }));
 export type NestedGallery =
-	| (FullGallery & { galleries: ShallowGallery[] })
-	| (EmptyGallery & { galleries: never[] });
+	| (EmptyGallery & { galleries: never[] })
+	| (FullGallery & { galleries: ShallowGallery[] });
 
-export type Gallery = ShallowGallery | NestedGallery;
+export type Gallery = NestedGallery | ShallowGallery;

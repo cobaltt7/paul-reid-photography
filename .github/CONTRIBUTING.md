@@ -4,7 +4,7 @@
 
 -   Follow [the code of conduct](CODE_OF_CONDUCT.md).
 -   Stay on topic
--   Use reactions instead of meaningless comments, AKA react with thumbs-up instead of commenting "Good idea".
+-   Use reactions instead of meaningless comments, AKA reacting with thumbs-up instead of commenting "Good idea".
 
 ## Issue Guidelines
 

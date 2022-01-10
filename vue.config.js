@@ -1,9 +1,9 @@
-// vue.config.js
-/* eslint-disable @typescript-eslint/no-var-requires */
+/** @file Vue & Webpack configuration. */
+"use strict";
 
 /** @type {import("@vue/cli-service").ProjectOptions} */
 module.exports = {
-	// options...
-	productionSourceMap: false,
+	// Options...
 	css: { extract: true, sourceMap: true },
+	productionSourceMap: false,
 };
