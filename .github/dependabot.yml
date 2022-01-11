@@ -5,9 +5,17 @@ updates:
       schedule:
           interval: "daily"
           time: "13:00"
+      commit-message:
+          prefix: "devx(ci):"
+          prefix-development: "devx(ci):"
+          include: "scope"
 
     - package-ecosystem: "npm"
       directory: "/"
       schedule:
           interval: "daily"
           time: "13:00"
+      commit-message:
+          prefix: "fix(deps):"
+          prefix-development: "devx(deps):"
+          include: "scope"
