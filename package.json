@@ -50,7 +50,7 @@
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^14.1.0",
-		"@commitlint/config-conventional": "^14.1.0",
+		"@commitlint/config-conventional": "^16.0.0",
 		"@commitlint/prompt-cli": "^14.1.0",
 		"@redguy12/eslint-plugin": "3.0.1",
 		"@redguy12/prettier-config": "1.0.0",
