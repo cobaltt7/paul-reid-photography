@@ -7,16 +7,17 @@
 		arrows-outside
 		autoplay
 		bullets-outside
-		duration="10000"
-		pause-on-hover="false"
-		pause-on-touch="false"
-		transition-speed="700"
+		:duration="10000"
+		:pause-on-hover="false"
+		:pause-on-touch="false"
+		:transition-speed="700"
 		class="mb-20 mt-4"
 	>
-		<vueper-slide v-for="src in photos" :key="src.path">
+		<vueper-slide v-for="{ path } in photos" :key="path">
 			<template #content>
 				<div class="flex h-full w-full">
-					<img draggable="false" :src="src.path" class="m-auto" />
+					<img draggable="false" :src="path" class="m-auto" />
+					{{path}}
 				</div>
 			</template>
 		</vueper-slide>
@@ -33,6 +34,9 @@
 	export default class PhotosSlider extends Vue {
 		/** @readonly */
 		@Property() public photos!: readonly Photo[];
+		mounted() {
+			console.log(this.photos[0]);
+		}
 	}
 </script>
 

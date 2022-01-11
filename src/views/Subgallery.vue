@@ -4,7 +4,8 @@
 	<main>
 		<h2>{{ gallery.title }}</h2>
 		<GalleryList :parent-gallery="gallery" />
-		<PhotosSlider :photos="gallery.photos" />
+		<h3>All photos</h3>
+		<PhotosSlider :photos="gallery.galleries.map(({ photos }) => photos).flat()" />
 	</main>
 </template>
 
