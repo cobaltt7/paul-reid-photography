@@ -23,7 +23,7 @@ const config = {
 				"misc", // Anything not included (consider adding new scopes)
 
 				"ui", // Styling and logos
-				"fader", // The PhotosFader commitlint
+				"slider", // The PhotosSlider commitlint
 				"list", // The GalleryList component
 				"masonry", // The GalleriesMasonry component
 				"galleryData", // Related to fetchGalleries.js

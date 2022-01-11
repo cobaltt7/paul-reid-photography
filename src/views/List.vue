@@ -1,10 +1,10 @@
 <!-- @file A page to list galleries. -->
 
 <template>
-	<div>
+	<main>
 		<h2>Home</h2>
 		<Masonry :galleries="galleries" />
-	</div>
+	</main>
 </template>
 
 <script lang="ts">

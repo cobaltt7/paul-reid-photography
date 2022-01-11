@@ -1,20 +1,20 @@
 <!-- @file A page to navigate a subgallery. -->
 
 <template>
-	<div>
+	<main>
 		<h2>{{ gallery.title }}</h2>
 		<GalleryList :parent-gallery="gallery" />
-		<PhotosFader :photos="gallery.photos" />
-	</div>
+		<PhotosSlider :photos="gallery.photos" />
+	</main>
 </template>
 
 <script lang="ts">
 	import { Component, Prop as Property, Vue } from "vue-property-decorator";
 	import type { NestedGallery } from "../types";
 	import GalleryList from "../components/GalleryList.vue";
-	import PhotosFader from "../components/PhotosFader.vue";
+	import PhotosSlider from "../components/PhotosSlider.vue";
 
-	@Component({ components: { GalleryList, PhotosFader } })
+	@Component({ components: { GalleryList, PhotosSlider } })
 	export default class SubgalleryPage extends Vue {
 		/** @readonly */
 		@Property() public gallery!: NestedGallery;

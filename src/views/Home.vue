@@ -1,7 +1,7 @@
 <!-- @file A home page. -->
 
 <template>
-	<div id="page" />
+	<main>Hi</main>
 </template>
 
 <script lang="ts">

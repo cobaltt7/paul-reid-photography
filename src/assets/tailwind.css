@@ -47,9 +47,9 @@ body {
 }
 
 main {
-	@apply mb-4
+	@apply my-4
 		prose
-		m-auto
+		mx-auto
 		w-9/12
 		max-w-5xl;
 
