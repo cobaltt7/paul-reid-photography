@@ -13,7 +13,7 @@
 			</div>
 			<div class="bg-warmGray-700 h-3/4 my-auto w-0.5" />
 			<div class="m-0 ml-4 my-auto">
-				<h2 class="group-hover:text-blue-900 mt-1">{{ gallery.title }}</h2>
+				<h3 class="group-hover:text-blue-900 mt-1">{{ gallery.title }}</h3>
 				<p class="group-hover:text-warmGray-700 mb-1">{{ gallery.firstPhoto.date }}</p>
 			</div>
 		</router-link>

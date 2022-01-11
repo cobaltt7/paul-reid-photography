@@ -1,13 +1,23 @@
 <!-- @file The template for all pages. -->
 
 <template>
-	<main>
-		<div id="nav">
-			<router-link to="/">Home</router-link> |
-			<router-link to="/about">About</router-link>
-		</div>
-		<router-view />
-	</main>
+	<body>
+		<header
+			class="border-b border-red-800 flex items-end justify-between m-auto p-6 pb-0 w-11/12"
+		>
+			<h1 class="pb-4 text-5xl text-yellow-900">Paul Reid Photography</h1>
+			<!--
+			  <nav>
+			  <router-link to="/">Featured</router-link>
+			  | <router-link to="/browse">Browse</router-link> |
+			  <router-link to="/search">Search</router-link>
+			  </nav>
+			-->
+		</header>
+		<main>
+			<router-view />
+		</main>
+	</body>
 </template>
 
 <script lang="ts">

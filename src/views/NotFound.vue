@@ -2,7 +2,7 @@
 
 <template>
 	<div id="page">
-		<h1>Not found</h1>
+		<h2>Not found</h2>
 		<!-- <p>todo: didyoumean</p> -->
 	</div>
 </template>

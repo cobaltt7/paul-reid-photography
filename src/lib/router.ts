@@ -61,7 +61,7 @@ const router = new VueRouter({
 			// / component: Home,
 			// / },
 			// / {
-			// / path: generateSlug("/all"),
+			// / path: generateSlug("/browse"),
 
 			// eslint-disable-next-line sort-keys -- it's not sorted so un-commenting-out the above lines work.
 			component: PostsView,

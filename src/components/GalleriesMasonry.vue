@@ -8,18 +8,25 @@
 			<router-link
 				v-for="i in galleries"
 				:key="i.slug"
-				style="width: var(--gallery-item-width);"
+				style="width: var(--gallery-item-width)"
 				class="gallery group inline-block"
 				:to="i.slug"
-			> <!-- card -->
+			>
+				<!-- card -->
 				<div
-				style="transform-style: preserve-3d;"
-				class="transition-all duration-500 relative">
-					<img class="m-0" :src="i.featured.path" /> <!-- front-->
-					<div class="absolute w-full bottom-0 " style="transform: rotateY(180deg);"> <!-- back-->
-					<div class="m-5 bg-white rounded-lg bg-opacity-75 text-center group-hover:text-warmGray-700">
-						<h6>{{ i.title }}</h6>
-						<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i></div>
+					style="transform-style: preserve-3d"
+					class="duration-500 relative transition-all"
+				>
+					<img class="m-0" :src="i.featured.path" />
+					<!-- front -->
+					<div class="absolute bottom-0 w-full" style="transform: rotateY(180deg)">
+						<!-- back -->
+						<div
+							class="bg-opacity-75 bg-white group-hover:text-warmGray-700 m-5 rounded-lg text-center"
+						>
+							<h3>{{ i.title }}</h3>
+							<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i>
+						</div>
 					</div>
 				</div>
 			</router-link>
@@ -39,7 +46,6 @@
 		@Property() public galleries!: readonly Gallery[];
 
 		public async mounted(): Promise<void> {
-			console.log(this.galleries[0])
 			const { grid, spacerElement } = this.$refs;
 
 			if (!(grid instanceof Element)) throw new Error("Grid element not found");

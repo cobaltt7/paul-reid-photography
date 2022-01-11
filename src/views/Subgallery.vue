@@ -2,7 +2,7 @@
 
 <template>
 	<div>
-		<h1>{{ gallery.title }}</h1>
+		<h2>{{ gallery.title }}</h2>
 		<GalleryList :parent-gallery="gallery" />
 		<PhotosFader :photos="gallery.photos" />
 	</div>

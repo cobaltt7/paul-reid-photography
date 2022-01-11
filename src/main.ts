@@ -12,4 +12,4 @@ import type { VNode as VueNode } from "vue";
 new Vue({
 	render: (createElement): VueNode => createElement(App),
 	router,
-}).$mount("main");
+}).$mount("body");

@@ -57,24 +57,19 @@ main {
 		@apply no-underline;
 	}
 
-	section {
-		h2 {
-			@apply mt-0;
-		}
-	}
-
-	h1 {
-		@apply m-0
-			px-0
-			pt-4
-			pr-2
-			only-of-type:text-3xl;
+	h2 {
+		@apply text-center
+			only-of-type:text-2xl;
 	}
 
 	> :first-child,
-	> h1:first-of-type,
+	> h2:first-of-type,
 	> p:only-of-type {
 		@apply self-center;
+	}
+
+	h3 {
+		@apply mb-1;
 	}
 
 	ul {
