@@ -25,7 +25,7 @@ const config = {
 				"ui", // Styling and logos
 				"fader", // The PhotosFader commitlint
 				"list", // The GalleryList component
-				"masonry", // The masonry component
+				"masonry", // The GalleriesMasonry component
 				"subgalleries", // Nested galleries
 				"service-worker", // Service worker
 				"pages", // Pages

@@ -2,21 +2,26 @@
 
 <template>
 	<div>
-		<!-- Sizing helpers - These are never show to the user. -->
+		<!-- Sizing helper - This is never show to the user. -->
 		<div ref="spacerElement" style="width: var(--gallery-item-width)" />
-		<div ref="gutterSize" class="w-5" />
 		<div ref="grid">
 			<a
 				v-for="i in galleries"
 				:key="i.slug"
-				style="margin-bottom: var(--gutter-size); width: var(--gallery-item-width)"
-				class="border border-black border-solid gallery group inline-block"
+				style="width: var(--gallery-item-width);"
+				class="gallery group inline-block"
 				:href="i.slug"
-				><h6 class="group-hover:text-blue-900">
-					{{ i.title }}
-				</h6>
-				<img :src="i.featured.path" />
-				<i class="group-hover:text-warmGray-700">{{ i.firstPhoto.date }}</i>
+			> <!-- card -->
+				<div
+				style="transform-style: preserve-3d;"
+				class="transition-all duration-500 relative">
+					<img class="m-0" :src="i.featured.path" /> <!-- front-->
+					<div class="absolute w-full bottom-0 " style="transform: rotateY(180deg);"> <!-- back-->
+					<div class="m-5 bg-white rounded-lg bg-opacity-75 text-center group-hover:text-warmGray-700">
+						<h6>{{ i.title }}</h6>
+						<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i></div>
+					</div>
+				</div>
 			</a>
 		</div>
 	</div>
@@ -34,26 +39,19 @@
 		@Property() public galleries!: readonly Gallery[];
 
 		public async mounted(): Promise<void> {
+			console.log(this.galleries[0])
 			const { grid, spacerElement } = this.$refs;
 
 			if (!(grid instanceof Element)) throw new Error("Grid element not found");
 
 			await waitForImages(grid);
 
-			const gutterSize = (
-				this.$refs.gutterSize as HTMLDivElement | undefined
-			)?.getBoundingClientRect().width;
-
-			if (typeof gutterSize !== "number") throw new Error("Spacer element not found");
-
-			document.documentElement.style.setProperty("--gutter-size", `${gutterSize}px`);
-
 			if (!(spacerElement instanceof HTMLDivElement))
 				throw new Error("Spacer element not found");
 
 			new Masonry(grid, {
 				columnWidth: spacerElement.getBoundingClientRect().width,
-				gutter: gutterSize,
+				gutter: 0,
 				horizontalOrder: true,
 				itemSelector: ".gallery",
 				percentPosition: true,
@@ -65,13 +63,14 @@
 
 <style>
 	:root {
-		/* todo: use `scoped` and define the properties on the component root element */
-		/* (full width - (gutter size * (column count - 1))) divided into x columns */
-		/* This determines the width of each block. */
-		--gallery-item-width: calc(
-			(100% - var(--gutter-size) * (var(--column-count) - 1)) / var(--column-count)
-		);
+		/* todo: use `scoped` and define the properties on the component root element
+		 This determines the width of each block. */
+		--gallery-item-width: calc(100% / var(--column-count));
 
-		--column-count: 4;
+		--column-count: 3;
+	}
+
+	.gallery:hover > div {
+		transform: rotateY(180deg);
 	}
 </style>
