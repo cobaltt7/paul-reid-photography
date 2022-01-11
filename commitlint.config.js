@@ -26,7 +26,7 @@ const config = {
 				"fader", // The PhotosFader commitlint
 				"list", // The GalleryList component
 				"masonry", // The GalleriesMasonry component
-				"subgalleries", // Nested galleries
+				"galleryData", // Related to fetchGalleries.js
 				"service-worker", // Service worker
 				"pages", // Pages
 				"errors", // Error handling

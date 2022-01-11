@@ -252,8 +252,8 @@ async function generateGalleryData(directories, shallow) {
 			})
 			.sort(
 				(galleryA, galleryB) =>
-					(galleryA.firstPhoto?.date.valueOf() || 0) -
-					(galleryB.firstPhoto?.date.valueOf() || 0),
+					(galleryB.firstPhoto?.date.valueOf() || 0) -
+					(galleryA.firstPhoto?.date.valueOf() || 0),
 			)
 	);
 }
