@@ -3,12 +3,11 @@
 <template>
 	<div id="page">
 		<h1>{{ gallery.title }}</h1>
-		<a
+		<router-link
 			v-if="parentGallery"
 			class="font-bold text-gray-600 text-sm"
-			:href="parentGallery.slug"
-			>{{ parentGallery.title }}</a
-		>
+			:to="parentGallery.slug"
+			>{{ parentGallery.title }}</router-link>
 		<PhotosFader :photos="gallery.photos" />
 	</div>
 </template>

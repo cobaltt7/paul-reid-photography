@@ -5,12 +5,12 @@
 		<!-- Sizing helper - This is never show to the user. -->
 		<div ref="spacerElement" style="width: var(--gallery-item-width)" />
 		<div ref="grid">
-			<a
+			<router-link
 				v-for="i in galleries"
 				:key="i.slug"
 				style="width: var(--gallery-item-width);"
 				class="gallery group inline-block"
-				:href="i.slug"
+				:to="i.slug"
 			> <!-- card -->
 				<div
 				style="transform-style: preserve-3d;"
@@ -22,7 +22,7 @@
 						<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i></div>
 					</div>
 				</div>
-			</a>
+			</router-link>
 		</div>
 	</div>
 </template>

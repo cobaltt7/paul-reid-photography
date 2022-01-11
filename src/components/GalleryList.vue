@@ -2,10 +2,10 @@
 
 <template>
 	<div>
-		<a
+		<router-link
 			v-for="gallery in parentGallery.galleries"
 			:key="gallery.slug"
-			:href="parentGallery.slug + gallery.slug"
+			:to="parentGallery.slug + gallery.slug"
 			class="border border-solid border-warmGray-700 flex group h-48 m-10"
 		>
 			<div class="mr-4 w-5/12">
@@ -16,7 +16,7 @@
 				<h2 class="group-hover:text-blue-900 mt-1">{{ gallery.title }}</h2>
 				<p class="group-hover:text-warmGray-700 mb-1">{{ gallery.firstPhoto.date }}</p>
 			</div>
-		</a>
+		</router-link>
 	</div>
 </template>
 
