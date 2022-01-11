@@ -37,7 +37,7 @@
 
 		public index = 0;
 
-		private loaded = false;
+		public loaded = false;
 
 		private interval: NodeJS.Timer | undefined;
 
@@ -67,7 +67,7 @@
 			this.startSlide();
 		}
 
-		private async mounted(): Promise<void> {
+		public async mounted(): Promise<void> {
 			await waitForImages(this.$el);
 			this.loaded = true;
 			this.startSlide();
