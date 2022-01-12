@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
 /* Import tailwind */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
 
 /* GLOBAL STYLES */
 * {
@@ -41,9 +42,9 @@ body {
 
 body {
 	@apply bg-orange-100
-		text-warmGray-700
+		text-stone-700
 		dark:text-orange-100
-		dark:bg-warmGray-700;
+		dark:bg-stone-700;
 }
 
 main {

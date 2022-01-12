@@ -22,7 +22,7 @@
 					<div class="absolute bottom-0 w-full" style="transform: rotateY(180deg)">
 						<!-- back -->
 						<div
-							class="bg-opacity-75 bg-white group-hover:text-warmGray-700 m-5 rounded-lg text-center"
+							class="bg-opacity-75 bg-white group-hover:text-stone-700 m-5 rounded-lg shadow-2xl text-center"
 						>
 							<h3>{{ i.title }}</h3>
 							<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i>
@@ -35,17 +35,16 @@
 </template>
 
 <script lang="ts">
-	import { Component, Prop as Property, Vue } from "vue-property-decorator";
+	import { Prop as Property, Vue } from "vue-property-decorator";
 	import type { Gallery } from "../types";
 	import Masonry from "masonry-layout";
 	import waitForImages from "../lib/waitForImages";
 
-	@Component
 	export default class GalleriesMasonry extends Vue {
 		/** @readonly */
 		@Property() public galleries!: readonly Gallery[];
 
-		public async mounted(): Promise<void> {
+		public override async mounted(): Promise<void> {
 			const { grid, spacerElement } = this.$refs;
 
 			if (!(grid instanceof Element)) throw new Error("Grid element not found");

@@ -1,7 +1,6 @@
 /** @file Route Paths to views. */
 
-import Vue from "vue";
-import VueRouter from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 // TODO: import Home from "../views/Home.vue";
 import { galleries } from "../types/global";
@@ -11,9 +10,7 @@ import NotFoundView from "../views/NotFound.vue";
 import SubgalleryView from "../views/Subgallery.vue";
 
 import type { Gallery, NestedGallery } from "../types";
-import type { RouteConfig } from "vue-router";
-
-Vue.use(VueRouter);
+import type { RouteRecordRaw } from "vue-router";
 
 /** @todo Move To fetchGalleries.js. */
 const SLUGS: string[] = [];
@@ -31,17 +28,19 @@ function generateSlug(slug: string): string {
 function createGalleryRoutes(
 	sourceGalleries: readonly Gallery[],
 	parentGallery?: NestedGallery,
-): RouteConfig[] {
-	const result: RouteConfig[] = [];
+): RouteRecordRaw[] {
+	const result: RouteRecordRaw[] = [];
 
 	for (const gallery of sourceGalleries) {
 		const hasChildren = !parentGallery && "galleries" in gallery;
+		const properties: Record<string, unknown> = { gallery };
+		if (parentGallery) properties.parentGallery = parentGallery;
 
 		result.push({
 			component: hasChildren ? SubgalleryView : GalleryView,
 			path: generateSlug((parentGallery?.slug ?? "") + gallery.slug),
 			// eslint-disable-next-line unicorn/prevent-abbreviations -- We didn't name this.
-			props: { gallery, parentGallery },
+			props: properties,
 		});
 
 		if (hasChildren) result.push(...createGalleryRoutes(gallery.galleries, gallery));
@@ -50,9 +49,8 @@ function createGalleryRoutes(
 	return result;
 }
 
-const router = new VueRouter({
-	base: process.env.BASE_URL ?? "",
-	mode: "history",
+const router = createRouter({
+	history: createWebHistory(process.env.BASE_URL),
 
 	routes: [
 		{
@@ -71,7 +69,7 @@ const router = new VueRouter({
 		...createGalleryRoutes(galleries),
 		{
 			component: NotFoundView,
-			path: "*",
+			path: "/:pathMatch(.*)*",
 		},
 	],
 });
