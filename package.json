@@ -70,7 +70,7 @@
 		"@types/node": "^17.0.8",
 		"@types/tailwindcss": "^3.0.2",
 		"@types/webpack": "^5.28.0",
-		"@vue/compiler-sfc": "3.2.13",
+		"@vue/compiler-sfc": "3.2.26",
 		"autoprefixer": "^10.4.2",
 		"cssnano": "^5.0.15",
 		"exifr": "^7.1.3",
