@@ -7,23 +7,23 @@ const colors = require("tailwindcss/colors"),
 
 /** @type {import("tailwindcss/tailwind-config").TailwindConfig} */
 module.exports = {
+	content: ["./{public,src}/**/*.{vue,html}"],
 	darkMode: "class",
-
 	plugins: [typography],
 
-	content: ["./{public,src}/**/*.{vue,html}"],
-
 	theme: {
-		colors: {
-			...colors,
-			current: "currentColor",
-			transparent: "transparent",
-			lightBlue: undefined,
-			warmGray: undefined,
-			trueGray: undefined,
-			coolGray: undefined,
-			blueGray: undefined,
-		},
+		colors: JSON.parse(
+			JSON.stringify({
+				...colors,
+				blueGray: undefined,
+				coolGray: undefined,
+				current: "currentColor",
+				lightBlue: undefined,
+				transparent: "transparent",
+				trueGray: undefined,
+				warmGray: undefined,
+			}),
+		),
 
 		screens: {
 			"2xl": { max: "1535px" },

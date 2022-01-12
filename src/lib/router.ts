@@ -1,6 +1,6 @@
 /** @file Route Paths to views. */
 
-import {createRouter,createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 // TODO: import Home from "../views/Home.vue";
 import { galleries } from "../types/global";
@@ -33,12 +33,14 @@ function createGalleryRoutes(
 
 	for (const gallery of sourceGalleries) {
 		const hasChildren = !parentGallery && "galleries" in gallery;
+		const properties: Record<string, unknown> = { gallery };
+		if (parentGallery) properties.parentGallery = parentGallery;
 
 		result.push({
 			component: hasChildren ? SubgalleryView : GalleryView,
 			path: generateSlug((parentGallery?.slug ?? "") + gallery.slug),
 			// eslint-disable-next-line unicorn/prevent-abbreviations -- We didn't name this.
-			props: { gallery, parentGallery },
+			props: properties,
 		});
 
 		if (hasChildren) result.push(...createGalleryRoutes(gallery.galleries, gallery));
