@@ -35,17 +35,16 @@
 </template>
 
 <script lang="ts">
-	import { Component, Prop as Property, Vue } from "vue-property-decorator";
+	import { Prop as Property, Vue } from "vue-property-decorator";
 	import type { Gallery } from "../types";
 	import Masonry from "masonry-layout";
 	import waitForImages from "../lib/waitForImages";
 
-	@Component
 	export default class GalleriesMasonry extends Vue {
 		/** @readonly */
 		@Property() public galleries!: readonly Gallery[];
 
-		public async mounted(): Promise<void> {
+		public override async mounted(): Promise<void> {
 			const { grid, spacerElement } = this.$refs;
 
 			if (!(grid instanceof Element)) throw new Error("Grid element not found");

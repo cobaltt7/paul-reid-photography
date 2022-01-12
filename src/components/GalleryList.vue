@@ -21,10 +21,9 @@
 </template>
 
 <script lang="ts">
-	import { Component, Prop as Property, Vue } from "vue-property-decorator";
+	import { Prop as Property, Vue } from "vue-property-decorator";
 	import type { NestedGallery } from "../types";
 
-	@Component
 	export default class GalleryList extends Vue {
 		/** @readonly */
 		@Property() public parentGallery!: NestedGallery;

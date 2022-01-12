@@ -25,16 +25,16 @@
 </template>
 
 <script lang="ts">
-	import { Component, Prop as Property, Vue } from "vue-property-decorator";
+	import { Options, Prop as Property, Vue } from "vue-property-decorator";
 	import type { Photo } from "../types";
 	import { VueperSlide, VueperSlides } from "vueperslides";
 	import "vueperslides/dist/vueperslides.css";
 
-	@Component({ components: { VueperSlide, VueperSlides } })
+	@Options({ components: { VueperSlide, VueperSlides } })
 	export default class PhotosSlider extends Vue {
 		/** @readonly */
 		@Property() public photos!: readonly Photo[];
-		mounted() {
+		override mounted() {
 			console.log(this.photos[0]);
 		}
 	}

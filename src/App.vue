@@ -38,8 +38,7 @@
 
 <script lang="ts">
 	import "./assets/tailwind.css";
-	import { Component, Vue } from "vue-property-decorator";
+	import { Vue } from "vue-property-decorator";
 
-	@Component
 	export default class App extends Vue {}
 </script>

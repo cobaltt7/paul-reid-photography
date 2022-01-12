@@ -10,12 +10,12 @@
 </template>
 
 <script lang="ts">
-	import { Component, Prop as Property, Vue } from "vue-property-decorator";
+	import { Options, Prop as Property, Vue } from "vue-property-decorator";
 	import type { NestedGallery } from "../types";
 	import GalleryList from "../components/GalleryList.vue";
 	import PhotosSlider from "../components/PhotosSlider.vue";
 
-	@Component({ components: { GalleryList, PhotosSlider } })
+	@Options({ components: { GalleryList, PhotosSlider } })
 	export default class SubgalleryPage extends Vue {
 		/** @readonly */
 		@Property() public gallery!: NestedGallery;
