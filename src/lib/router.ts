@@ -1,7 +1,7 @@
 /** @file Route Paths to views. */
 
 import Vue from "vue";
-import VueRouter from "vue-router";
+import {createRouter,createWebHistory} from "vue-router";
 
 // TODO: import Home from "../views/Home.vue";
 import { galleries } from "../types/global";
@@ -50,9 +50,8 @@ function createGalleryRoutes(
 	return result;
 }
 
-const router = new VueRouter({
-	base: process.env.BASE_URL ?? "",
-	mode: "history",
+const router = createRouter({
+	history: createWebHistory(process.env.BASE_URL),
 
 	routes: [
 		{

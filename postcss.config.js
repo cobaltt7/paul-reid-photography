@@ -10,11 +10,10 @@ module.exports = {
 
 	plugins: {
 		/* eslint-disable sort-keys -- order matters here */
-		"tailwindcss": {},
 		"postcss-import": {},
+		"tailwindcss/nesting": {},
+		"tailwindcss": {},
 		"postcss-advanced-variables": {},
-		"postcss-nested": {},
-		"postcss-sort-media-queries": {},
 
 		"cssnano": {
 			autoprefixer: false,

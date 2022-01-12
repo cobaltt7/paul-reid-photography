@@ -5,7 +5,7 @@
 		<h2 class="mb-0">{{ gallery.title }}</h2>
 		<router-link
 			v-if="parentGallery"
-			class="font-bold inline-block mt-2 text-center text-gray-600 text-sm w-full"
+			class="font-bold inline-block mt-2 text-center text-zinc-600 text-sm w-full"
 			:to="parentGallery.slug"
 		>
 			{{ parentGallery.title }}

@@ -22,7 +22,7 @@
 					<div class="absolute bottom-0 w-full" style="transform: rotateY(180deg)">
 						<!-- back -->
 						<div
-							class="bg-opacity-75 bg-white group-hover:text-warmGray-700 m-5 rounded-lg text-center"
+							class="bg-opacity-75 bg-white group-hover:text-stone-700 m-5 rounded-lg shadow-2xl text-center"
 						>
 							<h3>{{ i.title }}</h3>
 							<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i>
