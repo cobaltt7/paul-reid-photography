@@ -7,5 +7,6 @@ import App from "./App.vue";
 import "./lib/registerServiceWorker";
 import router from "./lib/router";
 
-const app = createApp({ router, ...App });
+const app = createApp(App);
+app.use(router);
 app.mount("body");

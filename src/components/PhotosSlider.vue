@@ -17,7 +17,6 @@
 			<template #content>
 				<div class="flex h-full w-full">
 					<img draggable="false" :src="path" class="m-auto" />
-					{{path}}
 				</div>
 			</template>
 		</vueper-slide>
@@ -34,9 +33,6 @@
 	export default class PhotosSlider extends Vue {
 		/** @readonly */
 		@Property() public photos!: readonly Photo[];
-		override mounted() {
-			console.log(this.photos[0]);
-		}
 	}
 </script>
 
