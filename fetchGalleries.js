@@ -279,13 +279,13 @@ function registerCommand(api, command) {
 	api.registerCommand(`${command}:prerender`, async (arguments_) => {
 		const galleries = await fetchGalleries(PHOTOS_DIR);
 
-		api.chainWebpack((config) => {
-			config.plugins.merge(
+		api.configureWebpack((config) => {
+			config.plugins = [
+				...(config.plugins || []),
 				new webpack.DefinePlugin({
 					"_galleries": JSON.stringify(galleries),
-					"process.env": JSON.stringify(process.env),
 				}),
-			);
+			];
 		});
 
 		await api.service.run(command, arguments_);

@@ -2,4 +2,3 @@
 
 declare module "@tailwindcss/typography";
 declare module "vueperslides";
-declare module "webpack";
