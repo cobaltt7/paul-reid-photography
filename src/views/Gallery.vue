@@ -1,17 +1,15 @@
 <!-- @file A page to view photos in a single gallery. -->
 
 <template>
-	<main>
-		<h2 class="mb-0">{{ gallery.title }}</h2>
-		<router-link
-			v-if="parentGallery"
-			class="font-bold inline-block mt-2 text-center text-sm text-zinc-600 w-full"
-			:to="parentGallery.slug"
-		>
-			{{ parentGallery.title }}
-		</router-link>
-		<PhotosSlider :photos="gallery.photos" />
-	</main>
+	<h2 class="mb-0">{{ gallery.title }}</h2>
+	<router-link
+		v-if="parentGallery"
+		class="font-bold inline-block mt-2 text-center text-sm text-zinc-600 w-full"
+		:to="parentGallery.slug"
+	>
+		{{ parentGallery.title }}
+	</router-link>
+	<PhotosSlider :photos="gallery.photos" />
 </template>
 
 <script lang="ts">

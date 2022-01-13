@@ -280,11 +280,10 @@ function registerCommand(api, command) {
 		const galleries = await fetchGalleries(PHOTOS_DIR);
 
 		api.configureWebpack((config) => {
+			// eslint-disable-next-line no-param-reassign -- This is just how Webpack works.
 			config.plugins = [
 				...(config.plugins || []),
-				new webpack.DefinePlugin({
-					"_galleries": JSON.stringify(galleries),
-				}),
+				new webpack.DefinePlugin({ _galleries: JSON.stringify(galleries) }),
 			];
 		});
 

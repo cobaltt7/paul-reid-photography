@@ -16,7 +16,7 @@
 			  </nav>
 			-->
 		</header>
-		<router-view />
+		<main><router-view /></main>
 		<footer class="border-red-800 border-t m-auto p-6 pt-1 text-sm w-11/12">
 			<a href="https://github.com/RedGuy12/paul-reid-photography">Source code</a> licensed
 			under

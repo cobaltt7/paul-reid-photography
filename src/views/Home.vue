@@ -1,8 +1,6 @@
 <!-- @file A home page. -->
 
-<template>
-	<main>Hi</main>
-</template>
+<template>Hi</template>
 
 <script lang="ts">
 	import { Vue } from "vue-property-decorator";

@@ -1,36 +1,31 @@
 <!-- @file A masonry design for galleries. -->
 
 <template>
-	<div>
-		<!-- Sizing helper - This is never show to the user. -->
-		<div ref="spacerElement" style="width: var(--gallery-item-width)" />
-		<div ref="grid">
-			<router-link
-				v-for="i in galleries"
-				:key="i.slug"
-				style="width: var(--gallery-item-width)"
-				class="gallery group inline-block"
-				:to="i.slug"
-			>
-				<!-- card -->
-				<div
-					style="transform-style: preserve-3d"
-					class="duration-500 relative transition-all"
-				>
-					<img class="m-0" :src="i.featured.path" />
-					<!-- front -->
-					<div class="absolute bottom-0 w-full" style="transform: rotateY(180deg)">
-						<!-- back -->
-						<div
-							class="bg-opacity-75 bg-white group-hover:text-stone-700 m-5 rounded-lg shadow-2xl text-center"
-						>
-							<h3>{{ i.title }}</h3>
-							<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i>
-						</div>
+	<!-- Sizing helper - This is never show to the user. -->
+	<div ref="spacerElement" style="width: var(--gallery-item-width)" />
+	<div ref="grid">
+		<router-link
+			v-for="i in galleries"
+			:key="i.slug"
+			style="width: var(--gallery-item-width)"
+			class="gallery group inline-block"
+			:to="i.slug"
+		>
+			<!-- card -->
+			<div style="transform-style: preserve-3d" class="duration-500 relative transition-all">
+				<img class="m-0" :src="i.featured.path" />
+				<!-- front -->
+				<div class="absolute bottom-0 w-full" style="transform: rotateY(180deg)">
+					<!-- back -->
+					<div
+						class="bg-opacity-75 bg-white group-hover:text-stone-700 m-5 rounded-lg shadow-2xl text-center"
+					>
+						<h3>{{ i.title }}</h3>
+						<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i>
 					</div>
 				</div>
-			</router-link>
-		</div>
+			</div>
+		</router-link>
 	</div>
 </template>
 

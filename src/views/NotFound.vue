@@ -1,10 +1,8 @@
 <!-- @file A 404 page. -->
 
 <template>
-	<main>
-		<h2>Not found</h2>
-		<!-- <p>todo: didyoumean</p> -->
-	</main>
+	<h2>Not found</h2>
+	<!-- <p>todo: didyoumean</p> -->
 </template>
 
 <script lang="ts">

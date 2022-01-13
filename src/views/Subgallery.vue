@@ -1,12 +1,10 @@
 <!-- @file A page to navigate a subgallery. -->
 
 <template>
-	<main>
-		<h2>{{ gallery.title }}</h2>
-		<GalleryList :parent-gallery="gallery" />
-		<h3>All photos</h3>
-		<PhotosSlider :photos="gallery.galleries.map(({ photos }) => photos).flat()" />
-	</main>
+	<h2>{{ gallery.title }}</h2>
+	<GalleryList :parent-gallery="gallery" />
+	<h3>All photos</h3>
+	<PhotosSlider :photos="gallery.galleries.map(({ photos }) => photos).flat()" />
 </template>
 
 <script lang="ts">
