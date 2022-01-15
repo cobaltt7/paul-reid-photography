@@ -1,6 +1,6 @@
 /** @file Define Global types. */
 
-import type { Gallery } from ".";
+import type { Gallery } from "./galleries";
 
 declare global {
 	/**

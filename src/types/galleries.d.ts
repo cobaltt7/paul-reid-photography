@@ -9,8 +9,8 @@ export type Photo = {
 	exposure: number;
 	model: string;
 	date: Date;
-	latitude: number;
-	longitude: number;
+	latitude: string;
+	longitude: string;
 	width: number;
 	height: number;
 	path: string;

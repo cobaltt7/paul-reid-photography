@@ -9,7 +9,7 @@ import PostsView from "../views/List.vue";
 import NotFoundView from "../views/NotFound.vue";
 import SubgalleryView from "../views/Subgallery.vue";
 
-import type { Gallery, NestedGallery } from "../types";
+import type { Gallery, NestedGallery } from "../types/galleries";
 import type { RouteRecordRaw } from "vue-router";
 
 /** @todo Move To fetchGalleries.js. */

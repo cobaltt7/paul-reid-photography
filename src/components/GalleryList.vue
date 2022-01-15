@@ -5,7 +5,7 @@
 		v-for="gallery in parentGallery.galleries"
 		:key="gallery.slug"
 		:to="parentGallery.slug + gallery.slug"
-		class="border border-solid border-stone-700 flex group h-48 m-10"
+		class="border border-solid border-stone-700 flex group h-48 my-10"
 	>
 		<div class="mr-4 w-5/12">
 			<img class="h-full m-0 w-auto" :src="gallery.featured.path" />
@@ -20,10 +20,9 @@
 
 <script lang="ts">
 	import { Prop as Property, Vue } from "vue-property-decorator";
-	import type { NestedGallery } from "../types";
+	import type { NestedGallery } from "../types/galleries";
 
 	export default class GalleryList extends Vue {
-		/** @readonly */
-		@Property() public parentGallery!: NestedGallery;
+		@Property() public readonly parentGallery!: NestedGallery;
 	}
 </script>

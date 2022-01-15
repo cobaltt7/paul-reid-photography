@@ -9,13 +9,23 @@
 
 <script lang="ts">
 	import { Options, Prop as Property, Vue } from "vue-property-decorator";
-	import type { NestedGallery } from "../types";
+	import type { NestedGallery } from "../types/galleries";
 	import GalleryList from "../components/GalleryList.vue";
 	import PhotosSlider from "../components/PhotosSlider.vue";
 
 	@Options({ components: { GalleryList, PhotosSlider } })
 	export default class SubgalleryPage extends Vue {
-		/** @readonly */
-		@Property() public gallery!: NestedGallery;
+		@Property() public readonly gallery!: NestedGallery;
+
+		public override mounted(): void {
+			this.$root?.setPageMeta?.({
+				gallery: { featured: this.gallery.featured },
+
+				page: {
+					description: `Browse photos from and nearby ${this.gallery.title}`,
+					title: this.gallery.title,
+				},
+			});
+		}
 	}
 </script>

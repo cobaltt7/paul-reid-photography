@@ -75,8 +75,8 @@ async function silentlyLoadFile(filepath) {
  * 	exposure: number;
  * 	height: number;
  * 	isoSpeed: number;
- * 	latitude: number;
- * 	longitude: number;
+ * 	latitude: string;
+ * 	longitude: string;
  * 	model: string;
  * 	shutterSpeed: string;
  * 	state: string;
@@ -118,8 +118,8 @@ async function loadExif(photoPath) {
 		exposure: +exif.ExposureCompensation,
 		height: dimensions.height || 0,
 		isoSpeed: +exif.ISO,
-		latitude: +exif.latitude,
-		longitude: +exif.longitude,
+		latitude: exif.latitude,
+		longitude: exif.longitude,
 		model: exif.Model,
 		shutterSpeed: new Fraction(exif.ExposureTime).toFraction(),
 		state: exif.State,
@@ -135,7 +135,9 @@ async function loadExif(photoPath) {
  * @param {T & boolean} [shallow] - Whether to allow subgalleries.
  *
  * @returns {Promise<
- * 	(T extends true ? import("./src/types").ShallowGallery : import("./src/types").Gallery)[]
+ * 	(T extends true
+ * 		? import("./src/types/galleries").ShallowGallery
+ * 		: import("./src/types/galleries").Gallery)[]
  * >}
  *   - Array of gallery data.
  */
@@ -146,7 +148,7 @@ async function generateGalleryData(directories, shallow) {
 		 *
 		 * @param {string} directory - Directory of the gallery.
 		 *
-		 * @returns {Promise<import("./src/types").Gallery>} - Gallery data.
+		 * @returns {Promise<import("./src/types/galleries").Gallery>} - Gallery data.
 		 */ async (directory) => {
 			/** Start loading photo paths in the background. */
 			const photosPromise = fileSystem.readdir(directory);
@@ -185,7 +187,7 @@ async function generateGalleryData(directories, shallow) {
 						};
 					}
 
-					/** @type {import("./src/types").NestedGallery} */
+					/** @type {import("./src/types/galleries").NestedGallery} */
 					return {
 						...metaFolder,
 						featured: featuredGallery.featured,
@@ -228,7 +230,7 @@ async function generateGalleryData(directories, shallow) {
 				};
 			}
 
-			/** @type {import("./src/types").ShallowGallery} */
+			/** @type {import("./src/types/galleries").ShallowGallery} */
 			return {
 				...metaFolder,
 				featured,
@@ -263,7 +265,7 @@ async function generateGalleryData(directories, shallow) {
  *
  * @param {string} directory - Directory to scan.
  *
- * @returns {Promise<import("./src/types").Gallery[]>} - Gallery data.
+ * @returns {Promise<import("./src/types/galleries").Gallery[]>} - Gallery data.
  */
 async function fetchGalleries(directory) {
 	return await getDirectoryChildren(directory).then(generateGalleryData);
