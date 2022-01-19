@@ -45,7 +45,7 @@
 		"@vue/cli-plugin-babel": "^5.0.0-rc.1",
 		"@vue/cli-plugin-pwa": "^5.0.0-rc.1",
 		"@vue/cli-plugin-router": "^5.0.0-rc.1",
-		"@vue/cli-plugin-typescript": "^5.0.0-rc.1",
+		"@vue/cli-plugin-typescript": "^5.0.0-rc.2",
 		"@vue/cli-service": "^5.0.0-rc.1",
 		"eslint": "8.5.0",
 		"eslint-config-hardcore": "23.6.2",
