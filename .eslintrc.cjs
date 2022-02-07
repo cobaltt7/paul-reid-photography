@@ -29,12 +29,12 @@ module.exports = {
 			},
 		},
 		// Once it is translated:
-		// / {
-		// / 	files: ["**.vue"],
-		// / 	rules: {
-		// / "vue/no-bare-strings-in-template": 2,
-		// / 	}
-		// / }
+		// {
+		// 	files: ["**.vue"],
+		// 	rules: {
+		// "vue/no-bare-strings-in-template": 2,
+		// 	}
+		// }
 	],
 
 	root: true,
