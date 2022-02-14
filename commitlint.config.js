@@ -15,9 +15,9 @@ const config = {
 			"always",
 			[
 				"community", // https://github.com/RedGuy12/paul-reid-photography/community
-				"ci", // Any automatic checks - actions, hooks, husky, etc
-				"lint", // eslint, prettier, commitlint, etc
-				"build", // Build steps - webpack, babel, terser, etc
+				"ci", // Any automatic checks - actions, hooks, Husky, etc
+				"lint", // ESLint, Prettier, commitlint, etc
+				"build", // Build steps - webpack, Babel, Terser, etc
 				"refactor", // Rewriting things
 				"deps", // Updating dependencies
 				"misc", // Anything not included (consider adding new scopes)
@@ -31,7 +31,7 @@ const config = {
 				"pages", // Pages
 				"errors", // Error handling
 				"search", // Searching
-				"api", // Anything for a computer to process - rss feeds, sitemaps, seo, etc
+				"api", // Anything for a computer to process - RSS feeds, sitemaps, SEO, etc
 
 				// Only for `photos` type
 				"add", // New gallery

@@ -13,7 +13,7 @@
 		>
 			<!-- card -->
 			<div style="transform-style: preserve-3d" class="duration-500 relative transition-all">
-				<img class="m-0" :src="i.featured.path" />
+				<img class="m-0" :src="i.featured?.path" />
 				<!-- front -->
 				<div class="absolute bottom-0 w-full" style="transform: rotateY(180deg)">
 					<!-- back -->
@@ -21,7 +21,9 @@
 						class="bg-opacity-75 bg-white group-hover:text-stone-700 m-5 rounded-lg shadow-2xl text-center"
 					>
 						<h3>{{ i.title }}</h3>
-						<i>{{ new Date(i.firstPhoto.date).toLocaleString() }}</i>
+						<i v-if="i.firstPhoto">{{
+							new Date(i.firstPhoto?.date).toLocaleString()
+						}}</i>
 					</div>
 				</div>
 			</div>
@@ -46,7 +48,7 @@
 			await waitForImages(grid);
 
 			if (!(spacerElement instanceof HTMLDivElement))
-				throw new Error("Spacer element not found");
+				throw new ReferenceError("Spacer element not found");
 
 			new Masonry(grid, {
 				columnWidth: spacerElement.getBoundingClientRect().width,

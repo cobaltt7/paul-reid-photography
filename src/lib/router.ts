@@ -12,9 +12,17 @@ import SubgalleryView from "../views/Subgallery.vue";
 import type { Gallery, NestedGallery } from "../types/galleries";
 import type { RouteRecordRaw } from "vue-router";
 
-/** @todo Move To fetchGalleries.js. */
 const SLUGS: string[] = [];
 
+/**
+ * Affirm that a slug is unique.
+ *
+ * @param slug - The slug.
+ *
+ * @returns A unique-ified slug.
+ *
+ * @todo Move To fetchGalleries.js.
+ */
 function generateSlug(slug: string): string {
 	const generatedSlug =
 		slug +
@@ -25,6 +33,14 @@ function generateSlug(slug: string): string {
 	return generatedSlug;
 }
 
+/**
+ * Generate route records for galleries.
+ *
+ * @param sourceGalleries - The galleries to generate route records for.
+ * @param [parentGallery] - The parent gallery if any.
+ *
+ * @returns The route records.
+ */
 function createGalleryRoutes(
 	sourceGalleries: readonly Gallery[],
 	parentGallery?: NestedGallery,
@@ -33,7 +49,7 @@ function createGalleryRoutes(
 
 	for (const gallery of sourceGalleries) {
 		const hasChildren = !parentGallery && "galleries" in gallery;
-		const properties: Record<string, unknown> = { gallery };
+		const properties: { [key: string]: unknown } = { gallery };
 		if (parentGallery) properties.parentGallery = parentGallery;
 
 		result.push({

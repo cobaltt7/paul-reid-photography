@@ -66,11 +66,11 @@
 			<h1 class="pb-4 text-5xl text-yellow-900">Paul Reid Photography</h1>
 		</router-link>
 		<!--
-		  <nav>
-		  <router-link to="/">Featured</router-link>
-		  | <router-link to="/browse">Browse</router-link> |
-		  <router-link to="/search">Search</router-link>
-		  </nav>
+			<nav>
+			<router-link to="/">Featured</router-link>
+			| <router-link to="/browse">Browse</router-link> |
+			<router-link to="/search">Search</router-link>
+			</nav>
 		-->
 	</header>
 	<main><router-view /></main>

@@ -1,5 +1,6 @@
 /**
  * @file PostCss Configuration file.
+ *
  * @todo Type it.
  */
 "use strict";

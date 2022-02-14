@@ -1,8 +1,11 @@
 /** @file ESLint Configuration file. */
 "use strict";
 
-module.exports = {
-	extends: ["plugin:@redguy12/recommended"],
+require("@rushstack/eslint-patch/modern-module-resolution");
+
+/** @type {import("eslint").Linter.Config} */
+const config = {
+	extends: "@redguy12",
 
 	globals: {
 		_galleries: "readonly",
@@ -11,30 +14,30 @@ module.exports = {
 
 	overrides: [
 		{
-			extends: ["plugin:@redguy12/config"],
+			extends: "@redguy12/eslint-config/config",
 			// Configuration files
-			files: ["fetchGalleries.js"],
+			files: "fetchGalleries.js",
 		},
 		{
-			extends: ["plugin:@redguy12/browser"],
+			extends: "@redguy12/eslint-config/browser",
 			// Client-side scripts (including HTML files)
 			files: ["src/**/*.{js,ts}", "public/**/*.{js,ts}"],
 		},
+		// // Once it is translated:
+		// {
+		// 	files: "**.vue",
+		// 	rules: {
+		// 		"vue/no-bare-strings-in-template": 2,
+		// 	},
+		// },
 		{
-			files: ["!**.md/*"],
+			files: "!**.md/*",
 
 			parserOptions: {
 				ecmaVersion: "latest",
-				project: "./tsconfig.json",
+				project: require("path").resolve(__dirname, "./tsconfig.json"),
 			},
 		},
-		// Once it is translated:
-		// {
-		// 	files: ["**.vue"],
-		// 	rules: {
-		// "vue/no-bare-strings-in-template": 2,
-		// 	}
-		// }
 	],
 
 	root: true,
@@ -49,3 +52,5 @@ module.exports = {
 		],
 	},
 };
+
+module.exports = config;

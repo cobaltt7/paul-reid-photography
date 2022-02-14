@@ -52,12 +52,12 @@ async function getDirectoryChildren(pathToScan) {
  * @returns {Promise<unknown>} - File content.
  */
 async function silentlyLoadFile(filepath) {
+	// Wrapped in a promise so we can use `.catch` for if it doesn't exist
 	return await new Promise(
-		(resolve) =>
-			// Wrapped in a promise so we can use `.catch` for if it doesn't exist
-			{
-				resolve(require(filepath));
-			},
+		(resolve) => {
+			resolve(require(filepath));
+		},
+
 		// eslint-disable-next-line no-empty-function -- We don't want to do anything on erorrs.
 	).catch(() => {});
 }
@@ -131,6 +131,7 @@ async function loadExif(photoPath) {
  * Generate data for galleries.
  *
  * @template {boolean} T
+ *
  * @param {string[]} directories - Directories to scan.
  * @param {T & boolean} [shallow] - Whether to allow subgalleries.
  *

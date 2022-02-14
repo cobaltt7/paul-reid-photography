@@ -1,5 +1,6 @@
 /**
  * @file Babel Configuration file.
+ *
  * @todo Type it.
  */
 "use strict";
