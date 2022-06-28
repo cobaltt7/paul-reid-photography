@@ -17,4 +17,3 @@ updates:
       commit-message:
           prefix: "fix(deps):"
           prefix-development: "devx(deps):"
-
