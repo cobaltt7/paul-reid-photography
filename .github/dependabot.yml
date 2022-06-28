@@ -8,7 +8,6 @@ updates:
       commit-message:
           prefix: "devx(ci):"
           prefix-development: "devx(ci):"
-          include: "scope"
 
     - package-ecosystem: "npm"
       directory: "/"
@@ -18,4 +17,3 @@ updates:
       commit-message:
           prefix: "fix(deps):"
           prefix-development: "devx(deps):"
-          include: "scope"
