@@ -79,12 +79,12 @@
 		<a href="https://github.com/RedGuy12/paul-reid-photography/blob/master/LICENSE"
 			>the MIT License</a
 		>.
-		<a href="https://github.com/RedGuy12/paul-reid-photography/tree/master/public/img/photos"
+		<a href="https://github.com/RedGuy12/paul-reid-photography/tree/master/static/imgs/photos"
 			>All photographs</a
 		>
 		copyright 2022 Paul Reid,
 		<a
-			href="https://github.com/RedGuy12/paul-reid-photography/blob/master/public/img/photos/LICENSE"
+			href="https://github.com/RedGuy12/paul-reid-photography/blob/master/static/imgs/photos/LICENSE"
 			>All Rights Reserved</a
 		>.
 	</footer>

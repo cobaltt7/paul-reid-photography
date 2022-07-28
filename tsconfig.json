@@ -3,32 +3,16 @@
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"alwaysStrict": true,
-		"baseUrl": ".",
 		"checkJs": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
 		"importHelpers": true,
 		"importsNotUsedAsValues": "error",
-		"isolatedModules": true,
 		"jsx": "preserve",
-		"lib": [
-			"dom",
-			"ES2015",
-			"ES2016",
-			"ES2017",
-			"ES2018",
-			"ES2019",
-			"ES2020",
-			"ES2021",
-			"ES5",
-			"ES6",
-			"ES7",
-			"ESNext",
-			"scripthost"
-		],
+		"lib": ["ESNext", "DOM"],
 		"maxNodeModuleJsDepth": 0,
-		"module": "es2022",
+		"module": "ES2020",
 		"moduleResolution": "node",
 		"noEmitOnError": true,
 		"noErrorTruncation": true,
@@ -51,11 +35,17 @@
 		"strictPropertyInitialization": true,
 		"stripInternal": true,
 		"target": "ESNext",
-		"types": ["webpack-env"],
+		"types": ["vite/client"],
 		"useDefineForClassFields": true,
-		"useUnknownInCatchVariables": true
+		"useUnknownInCatchVariables": true,
+		"baseUrl": "./",
+		"paths": {
+			"tslib": ["./node_modules/tslib/tslib.d.ts"]
+		}
 	},
 	"exclude": ["node_modules", ".git", "dist"],
 	"include": ["./*", "./**/*", "./.**/*", "./.*"],
-	"typeAcquisition": { "enable": true }
+	"typeAcquisition": {
+		"enable": true
+	}
 }

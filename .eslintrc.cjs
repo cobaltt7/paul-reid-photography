@@ -7,10 +7,7 @@ require("@rushstack/eslint-patch/modern-module-resolution");
 const config = {
 	extends: "@redguy12",
 
-	globals: {
-		_galleries: "readonly",
-		process: "readonly",
-	},
+	globals: { _galleries: "readonly" },
 
 	overrides: [
 		{
@@ -21,7 +18,7 @@ const config = {
 		{
 			extends: "@redguy12/eslint-config/browser",
 			// Client-side scripts (including HTML files)
-			files: ["src/**/*.{js,ts}", "public/**/*.{js,ts}"],
+			files: ["src/**/*.{js,ts}", "static/**/*.{js,ts}"],
 		},
 		// // Once it is translated:
 		// {
