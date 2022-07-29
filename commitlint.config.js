@@ -39,7 +39,7 @@ const config = {
 			],
 		],
 
-		"subject-case": [2, "always", "sentence-case"],
+		"subject-case": [2, "always", "lowercase"],
 		"subject-exclamation-mark": [2, "never"],
 		"type-enum": [2, "always", ["devx", "feat", "fix", "photos"]],
 	},
