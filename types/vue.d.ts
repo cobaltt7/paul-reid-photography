@@ -1,5 +1,3 @@
-/** @file Define Types for Vue. */
-
 import type { DefineComponent } from "vue";
 import type { PageMeta } from "./head";
 declare module "*.vue" {

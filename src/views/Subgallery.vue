@@ -9,7 +9,7 @@
 
 <script lang="ts">
 	import { Options, Prop as Property, Vue } from "vue-property-decorator";
-	import type { NestedGallery } from "../types/galleries";
+	import type { NestedGallery } from "../../types/galleries";
 	import GalleryList from "../components/GalleryList.vue";
 	import PhotosSlider from "../components/PhotosSlider.vue";
 

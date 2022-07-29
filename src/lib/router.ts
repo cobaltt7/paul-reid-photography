@@ -3,13 +3,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // TODO: import Home from "../views/Home.vue";
-import { galleries } from "../types/global";
+import { galleries } from "../../types/global";
 import GalleryView from "../views/Gallery.vue";
 import PostsView from "../views/List.vue";
 import NotFoundView from "../views/NotFound.vue";
 import SubgalleryView from "../views/Subgallery.vue";
 
-import type { Gallery, NestedGallery } from "../types/galleries";
+import type { Gallery, NestedGallery } from "../../types/galleries";
 import type { RouteRecordRaw } from "vue-router";
 
 const SLUGS: string[] = [];

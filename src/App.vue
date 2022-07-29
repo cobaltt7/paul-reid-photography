@@ -92,10 +92,12 @@
 
 <script lang="ts">
 	import "./assets/tailwind.css";
-	import { Vue, Options } from "vue-property-decorator";
 	import { Head } from "@vueuse/head";
-	import type { HeadInfo, PageMeta } from "./types/head";
+	import { Vue, Options } from "vue-property-decorator";
+
 	import stripTrailingSlash from "./lib/stripTrailingSlash";
+
+	import type { HeadInfo, PageMeta } from "../types/head";
 
 	const SITE_TITLE = "Paul Reid Photography";
 	const DEFAULT_HEAD_INFO = {

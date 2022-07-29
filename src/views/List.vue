@@ -7,7 +7,7 @@
 
 <script lang="ts">
 	import { Options, Prop as Property, Vue } from "vue-property-decorator";
-	import type { Gallery } from "../types/galleries";
+	import type { Gallery } from "../../types/galleries";
 	import Masonry from "../components/GalleriesMasonry.vue";
 
 	@Options({ components: { Masonry } })

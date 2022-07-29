@@ -25,7 +25,7 @@
 
 <script lang="ts">
 	import { Options, Prop as Property, Vue } from "vue-property-decorator";
-	import type { Photo } from "../types/galleries";
+	import type { Photo } from "../../types/galleries";
 	import { VueperSlide, VueperSlides } from "vueperslides";
 	import "vueperslides/dist/vueperslides.css";
 

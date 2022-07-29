@@ -32,10 +32,12 @@
 </template>
 
 <script lang="ts">
-	import { Prop as Property, Vue } from "vue-property-decorator";
-	import type { Gallery } from "../types/galleries";
 	import Masonry from "masonry-layout";
+	import { Prop as Property, Vue } from "vue-property-decorator";
+
 	import waitForImages from "../lib/waitForImages";
+
+	import type { Gallery } from "../../types/galleries";
 
 	export default class GalleriesMasonry extends Vue {
 		@Property() public galleries!: readonly Gallery[];
