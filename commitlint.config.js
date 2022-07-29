@@ -26,8 +26,7 @@ const config = {
 				"slider", // The PhotosSlider commitlint
 				"list", // The GalleryList component
 				"masonry", // The GalleriesMasonry component
-				"galleryData", // Related to fetchGalleries.js
-				"service-worker", // Service worker
+				"galleryData", // Related to fetchGalleries.ts
 				"pages", // Pages
 				"errors", // Error handling
 				"search", // Searching
@@ -40,7 +39,7 @@ const config = {
 			],
 		],
 
-		"subject-case": [0],
+		"subject-case": [2, "always", "sentence-case"],
 		"subject-exclamation-mark": [2, "never"],
 		"type-enum": [2, "always", ["devx", "feat", "fix", "photos"]],
 	},
