@@ -20,8 +20,8 @@
 		"lint:eslint": "cd \"./node_modules/@redguy12/eslint-config/\" && npx eslint \"../../../\" --resolve-plugins-relative-to \".\" && cd \"../../../\"",
 		"lint:prettier": "prettier --write \"**\" --ignore-unknown && prettier-package-json --write",
 		"lint:types": "tsc -p tsconfig.json",
-		"serve": "vite preview",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"serve": "vite preview"
 	},
 	"dependencies": {
 		"@tailwindcss/typography": "0.5.0",

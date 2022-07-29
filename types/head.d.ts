@@ -2,7 +2,6 @@ import type { Photo, NestedGallery } from "./galleries";
 
 export type PageMeta = {
 	readonly gallery?: { readonly featured?: Photo; readonly parent?: NestedGallery };
-
 	readonly page: { readonly description: string; readonly title?: string };
 };
 
@@ -24,11 +23,5 @@ export type HeadInfo = {
 		  })
 		| (AllGalleryMeta & { empty: true });
 
-	page: {
-		computedTitle: string;
-
-		description?: string;
-		siteTitle: string;
-		url: string;
-	};
+	page: { computedTitle: string; description?: string; siteTitle: string; url: string };
 };

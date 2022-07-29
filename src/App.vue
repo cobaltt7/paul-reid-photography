@@ -104,7 +104,6 @@
 		page: {
 			computedTitle: SITE_TITLE,
 			siteTitle: SITE_TITLE,
-
 			url: `https://${window.location.host.split("www.").at(-1)}${stripTrailingSlash(
 				window.location.pathname,
 			)}`,

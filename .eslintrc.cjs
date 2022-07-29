@@ -39,15 +39,7 @@ const config = {
 
 	root: true,
 
-	rules: {
-		"no-underscore-dangle": [
-			2,
-			{
-				allow: ["_galleries"],
-				enforceInMethodNames: true,
-			},
-		],
-	},
+	rules: { "no-underscore-dangle": [2, { allow: ["_galleries"], enforceInMethodNames: true }] },
 };
 
 module.exports = config;

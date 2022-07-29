@@ -39,13 +39,9 @@
 		"useDefineForClassFields": true,
 		"useUnknownInCatchVariables": true,
 		"baseUrl": "./",
-		"paths": {
-			"tslib": ["./node_modules/tslib/tslib.d.ts"]
-		}
+		"paths": { "tslib": ["./node_modules/tslib/tslib.d.ts"] }
 	},
 	"exclude": ["node_modules", ".git", "dist"],
 	"include": ["./*", "./**/*", "./.**/*", "./.*"],
-	"typeAcquisition": {
-		"enable": true
-	}
+	"typeAcquisition": { "enable": true }
 }

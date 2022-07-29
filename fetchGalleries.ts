@@ -160,14 +160,7 @@ async function generateGalleryData<Shallow extends boolean>(
 			if (!photos[0] || !featured) return { isFeatured, photos: [], slug, title };
 
 			/** @type {import("./types/galleries").ShallowGallery} */
-			return {
-				featured,
-				firstPhoto: photos[0],
-				isFeatured,
-				photos,
-				slug,
-				title,
-			};
+			return { featured, firstPhoto: photos[0], isFeatured, photos, slug, title };
 		},
 	);
 

@@ -2,7 +2,7 @@
 
 <template>
 	<h2>Not found</h2>
-	<!-- <p>todo: didyoumean</p> -->
+	<!-- <p>TODO: didyoumean</p> -->
 </template>
 
 <script lang="ts">

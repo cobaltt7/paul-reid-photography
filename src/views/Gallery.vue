@@ -25,10 +25,7 @@
 
 		public override mounted(): void {
 			this.$root?.setPageMeta?.({
-				gallery: {
-					featured: this.gallery.featured,
-					parent: this.parentGallery,
-				},
+				gallery: { featured: this.gallery.featured, parent: this.parentGallery },
 
 				page: {
 					description: `View photos from ${this.gallery.title}${

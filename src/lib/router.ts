@@ -72,21 +72,18 @@ const router = createRouter({
 		{
 			path: generateSlug("/"),
 
-			// / component: Home,
-			// / },
-			// / {
-			// / path: generateSlug("/browse"),
+			// /component: Home,
+			// /},
+			// /{
+			// /path: generateSlug("/browse"),
 
 			// eslint-disable-next-line sort-keys -- it's not sorted so un-commenting-out the above lines work.
 			component: PostsView,
-			// eslint-disable-next-line unicorn/prevent-abbreviations -- We didn't name this.
+			// eslint-disable-next-line unicorn/prevent-abbreviations -- I didn't name this.
 			props: { galleries },
 		},
 		...createGalleryRoutes(galleries),
-		{
-			component: NotFoundView,
-			path: "/:pathMatch(.*)*",
-		},
+		{ component: NotFoundView, path: "/:pathMatch(.*)*" },
 	],
 });
 

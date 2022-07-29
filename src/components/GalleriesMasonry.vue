@@ -66,7 +66,7 @@
 
 <style>
 	:root {
-		/* todo: use `scoped` and define the properties on the component root element
+		/* TODO: use `scoped` and define the properties on the component root element
 		 This determines the width of each block. */
 		--gallery-item-width: calc(100% / var(--column-count));
 

@@ -35,10 +35,7 @@ const config = defineConfig(async ({ command }) => ({
 
 		rollupOptions: {
 			// input: "index.html",
-			output: {
-				compact: true,
-				validate: true,
-			},
+			output: { compact: true, validate: true },
 			preserveEntrySignatures: "strict",
 		},
 
@@ -120,7 +117,6 @@ const config = defineConfig(async ({ command }) => ({
 					mergeIdents: true,
 					reduceIdents: true,
 					zindex: true,
-
 				}),
 
 				autoprefixer({ grid: "no-autoplace" }),
