@@ -13,20 +13,13 @@ const config = {
 		{
 			extends: "@redguy12/eslint-config/config",
 			// Configuration files
-			files: "fetchGalleries.js",
+			files: "fetchGalleries.ts",
 		},
 		{
 			extends: "@redguy12/eslint-config/browser",
 			// Client-side scripts (including HTML files)
 			files: ["src/**/*.{js,ts}", "static/**/*.{js,ts}"],
 		},
-		// // Once it is translated:
-		// {
-		// 	files: "**.vue",
-		// 	rules: {
-		// 		"vue/no-bare-strings-in-template": 2,
-		// 	},
-		// },
 		{
 			files: "!**.md/*",
 
