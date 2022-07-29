@@ -8,21 +8,25 @@
 			v-for="i in galleries"
 			:key="i.slug"
 			style="width: var(--gallery-item-width)"
-			class="gallery group inline-block"
+			class="gallery inline-block"
 			:to="i.slug"
 		>
 			<!-- card -->
-			<div style="transform-style: preserve-3d" class="duration-500 relative transition-all">
-				<img class="m-0" :src="i.featured?.path" />
+			<div style="transform-style: preserve-3d" class="duration-500 transition-all">
 				<!-- front -->
-				<div class="absolute bottom-0 w-full" style="transform: rotateY(180deg)">
-					<!-- back -->
+				<img class="m-0" :src="i.featured?.path" />
+
+				<!-- back -->
+				<div
+					class="absolute bg-opacity-25 bg-white bottom-0 h-full w-full"
+					style="backface-visibility: hidden; transform: rotateY(180deg)"
+				>
 					<div
-						class="bg-opacity-75 bg-white group-hover:text-stone-700 m-5 rounded-lg shadow-2xl text-center"
+						class="absolute bg-opacity-75 bg-white bottom-0 m-5 rounded-lg shadow-2xl text-center w-[-webkit-fill-available]"
 					>
-						<h3>{{ i.title }}</h3>
-						<i v-if="i.firstPhoto">{{
-							new Date(i.firstPhoto?.date).toLocaleString()
+						<h3 class="m-0">{{ i.title }}</h3>
+						<i v-if="i.firstPhoto" class="text-stone-900">{{
+							new Date(i.firstPhoto.date).toLocaleDateString()
 						}}</i>
 					</div>
 				</div>
