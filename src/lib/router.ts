@@ -19,9 +19,9 @@ const SLUGS: string[] = [];
  *
  * @param slug - The slug.
  *
- * @returns A unique-ified slug.
+ * @returns A unique slug.
  *
- * @todo Move To fetchGalleries.js.
+ * @todo Move To fetchGalleries.ts.
  */
 function generateSlug(slug: string): string {
 	const generatedSlug =
@@ -55,7 +55,7 @@ function createGalleryRoutes(
 		result.push({
 			component: hasChildren ? SubgalleryView : GalleryView,
 			path: generateSlug((parentGallery?.slug ?? "") + gallery.slug),
-			// eslint-disable-next-line unicorn/prevent-abbreviations -- We didn't name this.
+			// eslint-disable-next-line unicorn/prevent-abbreviations -- I didn't name this.
 			props: properties,
 		});
 
