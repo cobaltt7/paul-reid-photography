@@ -40,7 +40,7 @@
 		"@babel/preset-env": "7.16.11",
 		"@commitlint/cli": "16.0.2",
 		"@commitlint/config-conventional": "16.0.0",
-		"@commitlint/prompt-cli": "16.0.0",
+		"@commitlint/prompt-cli": "17.0.3",
 		"@redguy12/eslint-config": "file:../configs/eslint-config",
 		"@redguy12/eslint-plugin": "file:../configs/eslint-plugin",
 		"@redguy12/prettier-config": "file:../configs/prettier-config",
