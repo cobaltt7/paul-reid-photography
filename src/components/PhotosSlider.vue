@@ -14,6 +14,7 @@
 		class="mb-20 mt-4"
 	>
 		<vueper-slide v-for="{ path } in photos" :key="path">
+			<!-- todo it's backwards -->
 			<template #content>
 				<div class="flex h-full w-full">
 					<img draggable="false" :src="path" class="m-auto" />

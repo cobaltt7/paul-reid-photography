@@ -1,8 +1,9 @@
 <!-- @file A list design for galleries. -->
 
 <template>
+	<!-- todo reverse in fetchGalleries -->
 	<router-link
-		v-for="gallery in parentGallery.galleries"
+		v-for="gallery in parentGallery.galleries.reverse()"
 		:key="gallery.slug"
 		:to="parentGallery.slug + gallery.slug"
 		class="border border-solid border-stone-700 flex group h-48 my-10"
