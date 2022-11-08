@@ -45,7 +45,7 @@
 		"@redguy12/eslint-plugin": "file:../configs/eslint-plugin",
 		"@redguy12/prettier-config": "file:../configs/prettier-config",
 		"@rushstack/eslint-patch": "1.1.0",
-		"@types/babel__core": "7.1.19",
+		"@types/babel__core": "7.1.20",
 		"@types/eslint": "8.4.1",
 		"@types/imagesloaded": "4.1.2",
 		"@types/masonry-layout": "4.2.4",
