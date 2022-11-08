@@ -37,7 +37,7 @@
 		"vueperslides": "3.3.2"
 	},
 	"devDependencies": {
-		"@babel/preset-env": "7.16.11",
+		"@babel/preset-env": "7.20.2",
 		"@commitlint/cli": "16.0.2",
 		"@commitlint/config-conventional": "16.0.0",
 		"@commitlint/prompt-cli": "16.0.0",
