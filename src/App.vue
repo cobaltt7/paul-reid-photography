@@ -82,7 +82,7 @@
 		<a href="https://github.com/RedGuy12/paul-reid-photography/tree/master/static/imgs/photos"
 			>All photographs</a
 		>
-		copyright 2022 Paul Reid,
+		copyright 2023 Paul Reid,
 		<a
 			href="https://github.com/RedGuy12/paul-reid-photography/blob/master/static/imgs/photos/LICENSE"
 			>All Rights Reserved</a
