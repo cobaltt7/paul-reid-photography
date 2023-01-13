@@ -38,7 +38,7 @@
 	},
 	"devDependencies": {
 		"@babel/preset-env": "7.16.11",
-		"@commitlint/cli": "16.0.2",
+		"@commitlint/cli": "17.4.2",
 		"@commitlint/config-conventional": "16.0.0",
 		"@commitlint/prompt-cli": "16.0.0",
 		"@redguy12/eslint-config": "file:../configs/eslint-config",
