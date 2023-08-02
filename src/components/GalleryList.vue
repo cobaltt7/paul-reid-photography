@@ -15,7 +15,7 @@
 		<div class="group-hover:text-blue-900 m-0 ml-4 my-auto">
 			<h3 class="mt-1 group-hover:text-blue-900">{{ gallery.title }}</h3>
 			<p class="mb-1">
-				{{ new Date(gallery.firstPhoto?.date).toLocaleString() }}
+				{{ new Date(gallery.firstPhoto?.date || 0).toLocaleString() }}
 			</p>
 		</div>
 	</router-link>
