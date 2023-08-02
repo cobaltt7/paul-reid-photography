@@ -94,7 +94,7 @@ async function loadExif(photoPath: string): Promise<{
  */
 async function generateGalleryData<Shallow extends boolean>(
 	directories: string[],
-	shallow?: Shallow,
+	shallow: Shallow | false = false,
 ): Promise<(Shallow extends true ? ShallowGallery : Gallery)[]> {
 	const promises = directories.map(
 		/**
@@ -103,7 +103,7 @@ async function generateGalleryData<Shallow extends boolean>(
 		 * @param directory - Directory of the gallery.
 		 *
 		 * @returns - Gallery data.
-		 */ async (directory: string): Promise<Gallery> => {
+		 */ async (directory: string): Promise<Shallow extends true ? ShallowGallery : Gallery> => {
 			// Load data from the folder title.
 			const titleArray = path.basename(directory).split(",");
 			const isFeatured = Boolean(titleArray[0]);
@@ -114,7 +114,7 @@ async function generateGalleryData<Shallow extends boolean>(
 				path.resolve(directory, folderChild),
 			);
 
-			if (!(shallow ?? false) && typeof folderChildren[0] === "string") {
+			if (!shallow && typeof folderChildren[0] === "string") {
 				const isNested = (await fileSystem.lstat(folderChildren[0])).isDirectory();
 
 				if (isNested) {
