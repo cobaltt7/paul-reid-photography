@@ -1,8 +1,7 @@
-import type { DefineComponent } from "vue";
+import type { Component } from "@vue/runtime-core";
 import type { PageMeta } from "./head";
-declare module "*.vue" {
-	const component: DefineComponent<{}, {}, any>;
-	export default component;
+declare module "**.vue" {
+	export default Component;
 }
 
 declare module "@vue/runtime-core" {
