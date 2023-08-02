@@ -5,17 +5,11 @@ updates:
       schedule:
           interval: "daily"
           time: "13:00"
-      commit-message:
-          prefix: "devx(ci):"
-          prefix-development: "devx(ci):"
-      open-pull-requests-limit: 10
 
     - package-ecosystem: "npm"
       directory: "/"
       schedule:
           interval: "daily"
           time: "13:00"
-      commit-message:
-          prefix: "fix(deps):"
-          prefix-development: "devx(deps):"
-      open-pull-requests-limit: 100
+      ignore:
+          - dependency-name: "@types/*"
