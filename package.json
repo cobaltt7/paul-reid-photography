@@ -36,7 +36,7 @@
 		"vueperslides": "3.3.2"
 	},
 	"devDependencies": {
-		"@babel/preset-env": "7.16.11",
+		"@babel/preset-env": "7.22.15",
 		"@redguy12/prettier-config": "2.0.2",
 		"@types/imagesloaded": "4.1.2",
 		"@types/masonry-layout": "4.2.4",
