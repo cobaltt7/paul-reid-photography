@@ -12,7 +12,7 @@ Please:
 
 ## Filing [issues](https://docs.github.com/en/github/managing-your-work-on-github/about-issues)
 
-Found a bug? Report it! Be sure to check if it is already reported by using the search bar [here](https://github.com/RedGuy12/paul-reid-photography/issues). If there are no similar issues, you can create a new one. We will take a look at it.
+Found a bug? Report it! Be sure to check if it is already reported by using the search bar [here](https://github.com/cobaltt7/paul-reid-photography/issues). If there are no similar issues, you can create a new one. We will take a look at it.
 
 ## Starting [discussions](https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions)
 
