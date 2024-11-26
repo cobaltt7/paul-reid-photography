@@ -42,7 +42,7 @@
 		"@types/masonry-layout": "4.2.4",
 		"@types/node": "<=18.12.1",
 		"@types/tailwindcss": "3.0.2",
-		"@vitejs/plugin-vue": "2.2.0",
+		"@vitejs/plugin-vue": "5.2.1",
 		"autoprefixer": "10.4.2",
 		"cssnano": "5.0.15",
 		"exifr": "7.1.3",
