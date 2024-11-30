@@ -21,7 +21,7 @@ jobs:
 
             - name: Bump
               id: sync_types
-              uses: cobaltt7/sync-types@v1.2.16
+              uses: cobaltt7/sync-types@689af79053e8627325f89f60bf3b3204b531707a # v2.1.2
 
             - name: Commit
               id: commit
