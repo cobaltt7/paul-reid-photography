@@ -6,7 +6,6 @@
 		"allowUnusedLabels": false,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
-		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"maxNodeModuleJsDepth": 0,
@@ -28,7 +27,7 @@
 		"stripInternal": true,
 		"target": "ESNext",
 			"types": ["vite/client"],
-		"paths": { "tslib": ["./node_modules/tslib/tslib.d.ts"] }
+		"paths": { "tslib": ["./node_modules/tslib/tslib.d.ts"] },
 	"baseUrl": "./"
 	},
 	"exclude": ["node_modules/", "dist/"],
