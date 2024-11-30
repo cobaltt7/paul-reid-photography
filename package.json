@@ -2,15 +2,15 @@
 	"name": "@cobaltt7/paul-reid-photography",
 	"version": "0.0.0",
 	"private": true,
-	"type": "module",
 	"homepage": "https://paul-reid.net/",
 	"license": "MIT",
+	"type": "module",
 	"scripts": {
 		"build": "vite build",
 		"dev": "vite",
 		"format": "prettier --write \"**\" \"!./dist/\" --ignore-unknown --cache",
-		"types": "tsc --project tsconfig.json",
-		"serve": "vite preview"
+		"serve": "vite preview",
+		"types": "tsc --project tsconfig.json"
 	},
 	"browserslist": [
 		"> 0.5% and not dead and supports es6-module",

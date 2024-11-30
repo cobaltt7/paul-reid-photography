@@ -26,9 +26,9 @@
 		"strict": true,
 		"stripInternal": true,
 		"target": "ESNext",
-			"types": ["vite/client"],
+		"types": ["vite/client"],
 		"paths": { "tslib": ["./node_modules/tslib/tslib.d.ts"] },
-	"baseUrl": "./"
+		"baseUrl": "./"
 	},
 	"exclude": ["node_modules/", "dist/"],
 	"typeAcquisition": { "enable": true }
