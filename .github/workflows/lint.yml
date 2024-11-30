@@ -11,7 +11,7 @@ jobs:
     bump:
         name: Bump dependencies
         if: github.ref_name == 'main'
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-24.04
 
         steps:
             - name: Checkout
@@ -41,7 +41,7 @@ jobs:
     format:
         name: Format
         if: startsWith(github.ref_name, 'dependabot/') != true
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-24.04
 
         steps:
             - name: Checkout
@@ -69,7 +69,7 @@ jobs:
 
     analyze:
         name: Analyze
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-24.04
 
         steps:
             - name: Checkout
@@ -88,7 +88,7 @@ jobs:
 
     build:
         name: Build
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-24.04
 
         steps:
             - name: Checkout
