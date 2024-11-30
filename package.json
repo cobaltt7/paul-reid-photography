@@ -51,7 +51,7 @@
 		"husky": "7.0.4",
 		"image-size": "1.0.2",
 		"postcss": "8.4.5",
-		"postcss-advanced-variables": "3.0.1",
+		"postcss-advanced-variables": "5.0.0",
 		"postcss-import": "14.0.2",
 		"postcss-scss": "4.0.5",
 		"posthtml": "0.16.5",
