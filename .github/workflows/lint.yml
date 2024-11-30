@@ -15,17 +15,17 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v3.5.3
+              uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
               with:
                   ref: ${{ github.head_ref }}
 
             - name: Bump
               id: sync_types
-              uses: cobaltt7/sync-types@v1.2.16
+              uses: cobaltt7/sync-types@8136c927f35eaea3a14f3987132b14ae3366e2fe # v1.2.16
 
             - name: Commit
               id: commit
-              uses: stefanzweifel/git-auto-commit-action@v4.16.0
+              uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4.16.0
               with:
                   commit_message: Bump dependencies
                   branch: ${{ github.head_ref }}
@@ -45,12 +45,12 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v3.5.3
+              uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
               with:
                   ref: ${{ github.head_ref }}
 
             - name: Setup Node.JS
-              uses: actions/setup-node@v3.7.0
+              uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3.7.0
               with:
                   node-version: "18.12.1"
                   cache: npm
@@ -62,7 +62,7 @@ jobs:
               run: npm run format
 
             - name: Commit
-              uses: stefanzweifel/git-auto-commit-action@v4.16.0
+              uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4.16.0
               with:
                   commit_message: Format
                   branch: ${{ github.head_ref }}
@@ -73,18 +73,18 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v3.5.3
+              uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
               with:
                   ref: ${{ github.head_ref }}
 
             - name: Setup CodeQL
-              uses: github/codeql-action/init@v2.3.3
+              uses: github/codeql-action/init@29b1f65c5e92e24fe6b6647da1eaabe529cec70f # v2.3.3
               with:
                   languages: javascript
                   queries: security-and-quality
 
             - name: Analyze
-              uses: github/codeql-action/analyze@v2
+              uses: github/codeql-action/analyze@e2b57b01d64b69ac273abfbea5d3ed15231e1706 # v2
 
     build:
         name: Build
@@ -92,12 +92,12 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v3.5.3
+              uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
               with:
                   ref: ${{ github.head_ref }}
 
             - name: Setup Node.JS
-              uses: actions/setup-node@v3.7.0
+              uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3.7.0
               with:
                   node-version: "18.12.1"
                   cache: npm
