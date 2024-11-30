@@ -84,8 +84,8 @@ jobs:
             - name: Build
               run: node --run build
 
-    test:
-        name: Test
+    types:
+        name: Typecheck
         runs-on: ubuntu-24.04
 
         steps:
@@ -105,4 +105,4 @@ jobs:
               run: npm ci
 
             - name: Test
-              run: node --run test
+              run: node --run types
