@@ -38,7 +38,7 @@
 	"devDependencies": {
 		"@babel/preset-env": "7.16.11",
 		"@redguy12/prettier-config": "2.0.2",
-		"@types/imagesloaded": "4.1.2",
+		"@types/imagesloaded": "4.1.6",
 		"@types/masonry-layout": "4.2.4",
 		"@types/node": "<=22.10",
 		"@types/tailwindcss": "3.0.2",
