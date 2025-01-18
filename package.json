@@ -53,7 +53,7 @@
 		"postcss": "8.4.5",
 		"postcss-advanced-variables": "3.0.1",
 		"postcss-import": "14.0.2",
-		"postcss-scss": "4.0.5",
+		"postcss-scss": "4.0.9",
 		"posthtml": "0.16.5",
 		"prettier": "2.8.0",
 		"slugify": "1.6.5",
