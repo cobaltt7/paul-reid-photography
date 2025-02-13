@@ -37,7 +37,7 @@
 	},
 	"devDependencies": {
 		"@babel/preset-env": "7.16.11",
-		"@redguy12/prettier-config": "2.0.2",
+		"@redguy12/prettier-config": "3.2.1",
 		"@types/imagesloaded": "4.1.2",
 		"@types/masonry-layout": "4.2.4",
 		"@types/node": "<=22.10",
@@ -55,7 +55,7 @@
 		"postcss-import": "14.0.2",
 		"postcss-scss": "4.0.5",
 		"posthtml": "0.16.5",
-		"prettier": "2.8.0",
+		"prettier": "3.5.1",
 		"slugify": "1.6.5",
 		"typescript": "5.1.6",
 		"vite": "2.8.3",
