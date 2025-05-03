@@ -1,5 +1,8 @@
 /** @file Route Paths to views. */
 
+import type { RouteRecordRaw } from "vue-router";
+import type { Gallery, NestedGallery } from "../../types/galleries";
+
 import { createRouter, createWebHistory } from "vue-router";
 
 // TODO: import Home from "../views/Home.vue";
@@ -9,24 +12,19 @@ import PostsView from "../views/List.vue";
 import NotFoundView from "../views/NotFound.vue";
 import SubgalleryView from "../views/Subgallery.vue";
 
-import type { Gallery, NestedGallery } from "../../types/galleries";
-import type { RouteRecordRaw } from "vue-router";
-
 const SLUGS: string[] = [];
 
 /**
  * Affirm that a slug is unique.
  *
  * @param slug - The slug.
- *
  * @returns A unique slug.
- *
  * @todo Move To fetchGalleries.ts.
  */
 function generateSlug(slug: string): string {
 	const generatedSlug =
-		slug +
-		(SLUGS.includes(slug) ? `-${SLUGS.filter((used) => used.startsWith(slug)).length}` : "");
+		slug
+		+ (SLUGS.includes(slug) ? `-${SLUGS.filter((used) => used.startsWith(slug)).length}` : "");
 
 	SLUGS.push(generatedSlug);
 
@@ -38,7 +36,6 @@ function generateSlug(slug: string): string {
  *
  * @param sourceGalleries - The galleries to generate route records for.
  * @param [parentGallery] - The parent gallery if any.
- *
  * @returns The route records.
  */
 function createGalleryRoutes(

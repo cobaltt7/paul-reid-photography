@@ -22,10 +22,10 @@
 </template>
 
 <script lang="ts">
-	import { Prop as Property, Vue } from "vue-property-decorator";
-	import type { NestedGallery } from "../../types/galleries";
+import { Prop as Property, Vue } from "vue-property-decorator";
+import type { NestedGallery } from "../../types/galleries";
 
-	export default class GalleryList extends Vue {
-		@Property() public readonly parentGallery!: NestedGallery;
-	}
+export default class GalleryList extends Vue {
+	@Property() public readonly parentGallery!: NestedGallery;
+}
 </script>

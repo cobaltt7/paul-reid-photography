@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-	import { Vue } from "vue-property-decorator";
+import { Vue } from "vue-property-decorator";
 
-	export default class NotFound extends Vue {}
+export default class NotFound extends Vue {}
 </script>

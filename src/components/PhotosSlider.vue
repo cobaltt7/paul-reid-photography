@@ -25,20 +25,20 @@
 </template>
 
 <script lang="ts">
-	import { Options, Prop as Property, Vue } from "vue-property-decorator";
-	import type { Photo } from "../../types/galleries";
-	import { VueperSlide, VueperSlides } from "vueperslides";
-	import "vueperslides/dist/vueperslides.css";
+import { Options, Prop as Property, Vue } from "vue-property-decorator";
+import type { Photo } from "../../types/galleries";
+import { VueperSlide, VueperSlides } from "vueperslides";
+import "vueperslides/dist/vueperslides.css";
 
-	@Options({ components: { VueperSlide, VueperSlides } })
-	export default class PhotosSlider extends Vue {
-		@Property() public photos!: readonly Photo[];
-	}
+@Options({ components: { VueperSlide, VueperSlides } })
+export default class PhotosSlider extends Vue {
+	@Property() public photos!: readonly Photo[];
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	.vueperslides--fixed-height {
-		@apply h-[50rem];
-	}
+.vueperslides--fixed-height {
+	@apply h-[50rem];
+}
 </style>

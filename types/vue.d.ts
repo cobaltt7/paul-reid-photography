@@ -1,5 +1,6 @@
 import type { Component } from "@vue/runtime-core";
 import type { PageMeta } from "./head";
+
 declare module "**.vue" {
 	export default Component;
 }

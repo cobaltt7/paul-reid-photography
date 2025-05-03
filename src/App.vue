@@ -91,59 +91,59 @@
 </template>
 
 <script lang="ts">
-	import "./assets/tailwind.css";
-	import { Head } from "@vueuse/head";
-	import { Vue, Options } from "vue-property-decorator";
+import "./assets/tailwind.css";
+import { Head } from "@vueuse/head";
+import { Vue, Options } from "vue-property-decorator";
 
-	import stripTrailingSlash from "./lib/stripTrailingSlash";
+import stripTrailingSlash from "./lib/stripTrailingSlash";
 
-	import type { HeadInfo, PageMeta } from "../types/head";
+import type { HeadInfo, PageMeta } from "../types/head";
 
-	const SITE_TITLE = "Paul Reid Photography";
-	const DEFAULT_HEAD_INFO = {
-		page: {
-			computedTitle: SITE_TITLE,
-			siteTitle: SITE_TITLE,
-			url: `https://${window.location.host.split("www.").at(-1)}${stripTrailingSlash(
-				window.location.pathname,
-			)}`,
-		},
-	};
+const SITE_TITLE = "Paul Reid Photography";
+const DEFAULT_HEAD_INFO = {
+	page: {
+		computedTitle: SITE_TITLE,
+		siteTitle: SITE_TITLE,
+		url: `https://${window.location.host.split("www.").at(-1)}${stripTrailingSlash(
+			window.location.pathname,
+		)}`,
+	},
+};
 
-	@Options({ components: { Head } })
-	export default class App extends Vue {
-		public meta: HeadInfo = DEFAULT_HEAD_INFO;
+@Options({ components: { Head } })
+export default class App extends Vue {
+	public meta: HeadInfo = DEFAULT_HEAD_INFO;
 
-		public override data(): { meta: HeadInfo } {
-			return { meta: this.meta };
-		}
-
-		public override setPageMeta(info: PageMeta): void {
-			if (info.gallery) {
-				this.meta.gallery = {
-					parent: info.gallery.parent?.slug,
-
-					...(info.gallery.featured
-						? {
-								empty: false,
-								featured: info.gallery.featured.path,
-
-								location: {
-									city: info.gallery.featured.city,
-									country: info.gallery.featured.country,
-									latitude: info.gallery.featured.latitude,
-									longitude: info.gallery.featured.longitude,
-									state: info.gallery.featured.state,
-								},
-						  }
-						: { empty: true }),
-				};
-			}
-
-			this.meta.page.description = info.page.description;
-
-			this.meta.page.computedTitle =
-				info.page.title ?? "" ? `${info.page.title} | ${SITE_TITLE}` : SITE_TITLE;
-		}
+	public override data(): { meta: HeadInfo } {
+		return { meta: this.meta };
 	}
+
+	public override setPageMeta(info: PageMeta): void {
+		if (info.gallery) {
+			this.meta.gallery = {
+				parent: info.gallery.parent?.slug,
+
+				...(info.gallery.featured ?
+					{
+						empty: false,
+						featured: info.gallery.featured.path,
+
+						location: {
+							city: info.gallery.featured.city,
+							country: info.gallery.featured.country,
+							latitude: info.gallery.featured.latitude,
+							longitude: info.gallery.featured.longitude,
+							state: info.gallery.featured.state,
+						},
+					}
+				:	{ empty: true }),
+			};
+		}
+
+		this.meta.page.description = info.page.description;
+
+		this.meta.page.computedTitle =
+			(info.page.title ?? "") ? `${info.page.title} | ${SITE_TITLE}` : SITE_TITLE;
+	}
+}
 </script>

@@ -36,48 +36,48 @@
 </template>
 
 <script lang="ts">
-	import Masonry from "masonry-layout";
-	import { Prop as Property, Vue } from "vue-property-decorator";
+import Masonry from "masonry-layout";
+import { Prop as Property, Vue } from "vue-property-decorator";
 
-	import waitForImages from "../lib/waitForImages";
+import waitForImages from "../lib/waitForImages";
 
-	import type { Gallery } from "../../types/galleries";
+import type { Gallery } from "../../types/galleries";
 
-	export default class GalleriesMasonry extends Vue {
-		@Property() public galleries!: readonly Gallery[];
+export default class GalleriesMasonry extends Vue {
+	@Property() public galleries!: readonly Gallery[];
 
-		public override async mounted(): Promise<void> {
-			const { grid, spacerElement } = this.$refs;
+	public override async mounted(): Promise<void> {
+		const { grid, spacerElement } = this.$refs;
 
-			if (!(grid instanceof Element)) throw new Error("Grid element not found");
+		if (!(grid instanceof Element)) throw new Error("Grid element not found");
 
-			await waitForImages(grid);
+		await waitForImages(grid);
 
-			if (!(spacerElement instanceof HTMLDivElement))
-				throw new ReferenceError("Spacer element not found");
+		if (!(spacerElement instanceof HTMLDivElement))
+			throw new ReferenceError("Spacer element not found");
 
-			new Masonry(grid, {
-				columnWidth: spacerElement.getBoundingClientRect().width,
-				gutter: 0,
-				horizontalOrder: true,
-				itemSelector: ".gallery",
-				percentPosition: true,
-				transitionDuration: 0,
-			}).layout?.();
-		}
+		new Masonry(grid, {
+			columnWidth: spacerElement.getBoundingClientRect().width,
+			gutter: 0,
+			horizontalOrder: true,
+			itemSelector: ".gallery",
+			percentPosition: true,
+			transitionDuration: 0,
+		}).layout?.();
 	}
+}
 </script>
 
 <style>
-	:root {
-		/* TODO: use `scoped` and define the properties on the component root element
+:root {
+	/* TODO: use `scoped` and define the properties on the component root element
 		 This determines the width of each block. */
-		--gallery-item-width: calc(100% / var(--column-count));
+	--gallery-item-width: calc(100% / var(--column-count));
 
-		--column-count: 3;
-	}
+	--column-count: 3;
+}
 
-	.gallery:hover > div {
-		transform: rotateY(180deg);
-	}
+.gallery:hover > div {
+	transform: rotateY(180deg);
+}
 </style>

@@ -1,3 +1,5 @@
+import type { Gallery, ShallowGallery } from "./types/galleries";
+
 import fileSystem from "fs/promises";
 import path from "path";
 import url from "url";
@@ -6,8 +8,6 @@ import exifr from "exifr";
 import Fraction from "fraction.js";
 import sizeOf from "image-size";
 import slugify from "slugify";
-
-import type { Gallery, ShallowGallery } from "./types/galleries";
 
 export const PUBLIC_DIR = path.resolve(path.dirname(url.fileURLToPath(import.meta.url)), "static");
 export const PHOTOS_DIR = path.resolve(PUBLIC_DIR, "imgs/photos");
@@ -18,7 +18,6 @@ const SLUGIFY_OPTIONS = { lower: true, strict: true };
  * Get all subdirectories of a directory.
  *
  * @param pathToScan - Path to scan for galleries.
- *
  * @returns - Array of subdirectories.
  */
 async function getDirectoryChildren(pathToScan: string): Promise<string[]> {
@@ -45,10 +44,11 @@ async function getDirectoryChildren(pathToScan: string): Promise<string[]> {
  * Load EXIF data from a photo.
  *
  * @param photoPath - Path to the photo.
- *
  * @returns EXIF data.
  */
-async function loadExif(photoPath: string): Promise<{
+async function loadExif(
+	photoPath: string,
+): Promise<{
 	aperture: number;
 	city: string;
 	country: string;
@@ -89,7 +89,6 @@ async function loadExif(photoPath: string): Promise<{
  *
  * @param directories - Directories to scan.
  * @param shallow - Whether to allow subgalleries. Defaults to `false`.
- *
  * @returns - Array of gallery data.
  */
 async function generateGalleryData<Shallow extends boolean>(
@@ -101,7 +100,6 @@ async function generateGalleryData<Shallow extends boolean>(
 		 * Load data for a single gallery.
 		 *
 		 * @param directory - Directory of the gallery.
-		 *
 		 * @returns - Gallery data.
 		 */ async (directory: string): Promise<Shallow extends true ? ShallowGallery : Gallery> => {
 			// Load data from the folder title.
@@ -182,7 +180,6 @@ async function generateGalleryData<Shallow extends boolean>(
  * Fetch galleries in a directory.
  *
  * @param directory - Directory to scan.
- *
  * @returns - Gallery data.
  */
 export default async function fetchGalleries(directory: string): Promise<Gallery[]> {

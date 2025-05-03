@@ -7,7 +7,6 @@ import imagesLoaded from "imagesloaded";
  *
  * @param elementSelector - Selector to get the container element.
  * @param options - Options to pass to imagesLoaded.
- *
  * @returns A promise that resolves when all images are loaded.
  */
 export default async function waitForImages(
@@ -15,9 +14,8 @@ export default async function waitForImages(
 	options?: ImagesLoaded.ImagesLoadedOptions,
 ): Promise<ImagesLoaded.ImagesLoaded> {
 	return await new Promise((resolve, reject) => {
-		const loading = options
-			? imagesLoaded(elementSelector, options)
-			: imagesLoaded(elementSelector);
+		const loading =
+			options ? imagesLoaded(elementSelector, options) : imagesLoaded(elementSelector);
 
 		loading.on("done", resolve);
 		loading.on("fail", reject);

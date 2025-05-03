@@ -1,4 +1,4 @@
-import type { Photo, NestedGallery } from "./galleries";
+import type { NestedGallery, Photo } from "./galleries";
 
 export type PageMeta = {
 	readonly gallery?: { readonly featured?: Photo; readonly parent?: NestedGallery };

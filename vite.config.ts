@@ -18,7 +18,7 @@ import { defineConfig } from "vite";
 import babel from "vite-plugin-babel";
 import restart from "vite-plugin-restart";
 
-import galleries, { PUBLIC_DIR, PHOTOS_DIR } from "./fetchGalleries";
+import galleries, { PHOTOS_DIR, PUBLIC_DIR } from "./fetchGalleries";
 
 const cwd = path.dirname(url.fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(path.resolve(cwd, "./package.json"), "utf8"));
