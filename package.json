@@ -58,7 +58,7 @@
 		"prettier": "2.8.8",
 		"slugify": "1.6.5",
 		"typescript": "5.1.6",
-		"vite": "2.8.3",
+		"vite": "4.5.14",
 		"vite-plugin-babel": "1.0.0",
 		"vite-plugin-restart": "0.1.1"
 	},
